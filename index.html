@@ -11,7 +11,7 @@
 		<link rel="stylesheet" href="dist/theme/white.css">
 
 		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+		<link rel="stylesheet" href="plugin/highlight/github-dark-dimmed.css">
 	</head>
 	<body>
 		<div class="reveal">
@@ -19,7 +19,8 @@
 				<section>
 					<h3>
 						<span style="color: #F9322C">
-							Чистая архитектура
+							Чистая архитектура, Фронтовые микросервисы,
+							микрофронтенды
 						</span>
 						<br />
 						<small>для Веб разработки</small>
@@ -425,15 +426,796 @@
 					</section>
 				</section>
 
-				<section>Слой View</section>
+				<section>
+					<section>
+						<h3>
+							Слой <b style="color: #F9322C">View</b>
+						</h3>
+						<p>
+							Представляет из себя функциональный компонент или метод render классового компонента без логики
+						</p>
+					</section>
 
-				<section>Слой Controller</section>
+					<section>
+						<h4>
+							Пример слоя <b style="color: #F9322C">View</b> в React
+						</h4>
 
-				<section>Слой Service</section>
+						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+							const Comment = (props) => (
+								<div className="Comment">
+									<div className="UserInfo">
+										<img
+											className="Avatar"
+											src={props.author.avatarUrl}
+											alt={props.author.name}
+										/>
+										<div className="UserInfo-name">{props.author.name}</div>
+									</div>
+									<div className="Comment-text">{props.text}</div>
+									<div className="Comment-date">{props.date}</div>
+								</div>
+							);
+						</script></code></pre>
+					</section>
 
-				<section>Слой Repository</section>
+					<section>
+						<h4>
+							Пример слоя <b style="color: #F9322C">View</b> в Android и Xamarin
+						</h4>
 
-				<section>Слой Models</section>
+						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+							<?xml version="1.0" encoding="utf-8"?>
+							<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+										android:layout_width="match_parent"
+										android:layout_height="match_parent"
+										android:orientation="vertical" >
+								<TextView android:id="@+id/text"
+										android:layout_width="wrap_content"
+										android:layout_height="wrap_content"
+										android:text="Hello, I am a TextView" />
+								<Button android:id="@+id/button"
+										android:layout_width="wrap_content"
+										android:layout_height="wrap_content"
+										android:text="Hello, I am a Button" />
+							</LinearLayout>
+						</script></code></pre>
+					</section>
+
+					<section>
+						<h4>
+							Пример слоя <b style="color: #F9322C">View</b> в WPF
+						</h4>
+
+						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+							<ListView d:ItemsSource="{d:SampleData ItemCount=3}">
+								<ListView.ItemTemplate>
+								   <DataTemplate>
+									   <StackPanel Orientation="Horizontal">
+										   <Image Width="50" Source="{Binding ProfilePicture}"/>
+										   <StackPanel Orientation="Vertical">
+											   <TextBlock Text="{Binding FirstName}" Margin="5"/>
+											   <Label Content="{Binding LastName}"/>
+											</StackPanel>
+										</StackPanel>
+									</DataTemplate>
+								</ListView.ItemTemplate>
+							</ListView>
+						</script></code></pre>
+					</section>
+
+					<section>
+						<h4>
+							Пример слоя <b style="color: #F9322C">View</b> в C# Asp.Net
+						</h4>
+
+						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+							@model Student
+
+							<h2>Student Detail:</h2>
+							<ul>
+								<li>Student Id: @Model.StudentId</li>
+								<li>Student Name: @Model.StudentName</li>
+								<li>Age: @Model.Age</li>
+							</ul>
+						</script></code></pre>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h3>
+							Слой <b style="color: #F9322C">Controller</b>
+						</h3>
+						<p>
+							Представляет из себя класс отвечающий за взаимодействие с событиями от пользователя
+							и предоставления данных для отображения в слое view.
+						</p>
+					</section>
+
+					<section>
+						<h4>
+							Пример слоя <b style="color: #F9322C">Controller</b> в React
+						</h4>
+
+						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+							class ToDoController {
+
+								public currentTodo: string = "";
+								public todos: string[] = [];
+
+								public handleAddTodo (): void {
+									this.todos.push(this.currentTodo);
+								}
+
+								public handleDeleteTodo (index: number): void {
+									this.todos.splice(index, 1);
+								}
+
+							}
+						</script></code></pre>
+					</section>
+
+					<section>
+						<h4>
+							Пример слоя <b style="color: #F9322C">Controller</b> в Android
+						</h4>
+
+						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+							class ToDoActivity {
+								public var currentTodo: String = "";
+								public var todos: MutableList<String> = ArrayList();
+
+								public fun handleAddTodo (): Unit {
+									this.todos.add(this.currentTodo);
+								}
+
+								public fun handleDeleteTodo (index: Int): Unit {
+									this.todos.drop(index);
+								}
+							}
+						</script></code></pre>
+					</section>
+
+					<section>
+						<h4>
+							Пример слоя <b style="color: #F9322C">Controller</b> в C#, Java, Xamarin, WPF, Asp.Net
+						</h4>
+
+						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+							class ToDoController
+							{
+								public string CurrentTodo = "";
+								public List<string> Todos = new List<string>();
+
+								public void HandleAddTodo() {
+									this.Todos.Add(this.CurrentTodo);
+								}
+
+								public void HandleDeleteTodo(int index) {
+									this.Todos.RemoveAt(index);
+								}
+							}
+						</script></code></pre>
+					</section>
+				</section>
+
+
+				<section>
+					<section>
+						<h3>
+							Связывание слоев <b style="color: #F9322C">View</b> и <b style="color: #F9322C">Controller</b>
+						</h3>
+					</section>
+
+					<section>
+						<h4>
+							1. Через классовый компонент
+						</h4>
+
+						<pre><code data-trim ata-noescape class="language-ts"><script type="text/template">
+							import {todoView} from "ToDo.view.tsx";
+
+							class ToDo extends React.Component {
+
+								...
+
+								public render (): JSX.Element {
+									return todoView(this, this.props);
+								}
+							}
+						</script></code></pre>
+
+						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+							export const todoView = (ctrl: ToDo, props) => (
+								<div className="Comment">
+									<button onClick={() => ctrl.handleAddTodo()}>
+										Кнопка
+									</button>
+								</div>
+							);
+						</script></code></pre>
+					</section>
+
+					<section>
+						<h4>
+							2. Библиотека <a href="https://github.com/LabEG/reca" target="_blank">ReCA</a>
+						</h4>
+
+						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+							import {AutoStore} from "reca";
+
+							class ToDoStore extends AutoStore {
+								...
+							}
+						</script></code></pre>
+
+						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+							import {useStore} from "reca";
+
+							const todoView = (props) => {
+								const store = useStore(ToDoStore);
+
+								return (
+									<div className="Comment">
+										<button onClick={store.handleAddTodo}>
+											Кнопка
+										</button>
+									</div>
+								)
+							};
+						</script></code></pre>
+					</section>
+
+					<section>
+						<h4>
+							3. Библиотека MobX
+						</h4>
+
+						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+							class ToDoStore {
+								...
+							}
+
+							export const todoStore = new TodoStore();
+						</script></code></pre>
+
+						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+							import {todoStore} from "./ToDo.store.ts";
+
+							const Todo = observer(({todoStore}) => (
+								<div className="Comment">
+									<button onClick={() => toDoStore.handleAddTodo()}>
+										Кнопка
+									</button>
+								</div>
+							));
+
+							ReactDOM.render(<Todo todoStore={todoStore} />, document.body)
+						</script></code></pre>
+					</section>
+				</section>
+
+
+				<section>
+					<section>
+						<h3>
+							Слой <b style="color: #F9322C">Services</b>
+						</h3>
+						<p>
+							Представляет из себя класс содержащий логику пере используемую
+							несколькими контроллерами.
+						</p>
+					</section>
+
+					<section>
+						<h4>
+							Пример слоя <b style="color: #F9322C">Service</b>
+						</h4>
+
+						<p>
+							Логика запроса профиля пользователя.
+						</p>
+
+						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+							class ProfileService
+							{
+								public async getUserProfile(): Promise<UserProfile> {
+									const response = await fetch("/api/profile");
+									const data = await response.json();
+
+									...
+
+									return data;
+								}
+							}
+						</script></code></pre>
+					</section>
+
+					<section>
+						<h4>
+							Пример слоя <b style="color: #F9322C">Service</b>
+						</h4>
+
+						<p>
+							Сборка логов.
+						</p>
+
+						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+							class LoggerService
+							{
+								public log(): void {
+									...
+								}
+
+								public warn(): void {
+									...
+								}
+
+								public error(): void {
+									...
+								}
+							}
+						</script></code></pre>
+					</section>
+
+					<section>
+						<h4>
+							Что еще размещается в <b style="color: #F9322C">Service</b>?
+						</h4>
+
+						<ul>
+							<li>
+								Запросы к API сервера
+							</li>
+							<li>
+								Сервис Логирования
+							</li>
+							<li>
+								Сервис GTM
+							</li>
+							<li>
+								Сервис Кеширования
+							</li>
+							<li>
+								Сервис Шина Событий
+							</li>
+							<li>
+								Сервис Веб-Сокетов
+							</li>
+							<li>
+								Сервис Нотификаций
+							</li>
+							<li>
+								И любой другой пере используемый код, кроме логики данных, но об этом позже.
+							</li>
+						</ul>
+					</section>
+
+					<section>
+						<h4>
+							Пример преимущества слоя <b style="color: #F9322C">Service</b>
+						</h4>
+
+						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+							class ProfileService
+							{
+								references: 27
+								public async getUserProfile(): Promise<UserProfile> {
+									...
+									Версия 1: Получение собственного профиля,
+									Версия 2: Получение собственного и обогащение профилем ССО,
+									Версия 3: Получение профиля с бека с поддержкой openID
+									...
+								}
+							}
+						</script></code></pre>
+
+						<small>
+							Сервис запроса профиля пере используется в 27 местах. Сервис приходилось править 3 раза.
+							За счет того что вся логика в одном месте править пришлось всего в 1 месте 3 раза, а не в 27 местах по 3 раза.
+						</small>
+					</section>
+
+					<section>
+						<h4>
+							Бонус про <b style="color: #F9322C">Service</b>
+						</h4>
+
+						<ul>
+							<li>
+								Независим от фреймворка
+							</li>
+							<li class="fragment">
+								Можно переиспользовать между разными фреймворками в рамках одного приложения
+							</li>
+							<li class="fragment">
+								Независим от платформы
+							</li>
+							<li class="fragment">
+								Можно переиспользовать между разными платформами
+							</li>
+						</ul>
+					</section>
+				</section>
+
+
+				<section>
+					<section>
+						<h3>
+							Связывание слоев <b style="color: #F9322C">Controller</b> и <b style="color: #F9322C">Service</b>
+						</h3>
+						<p>
+							Для связывания используются библиотеки Dependency Injection
+						</p>
+					</section>
+
+					<section>
+						<h4>
+							1. Библиотека <a href="https://github.com/LabEG/first-di" target="_blank">First DI</a> и
+							<a href="https://github.com/LabEG/reca" target="_blank">ReCA</a>
+						</h4>
+
+						<pre><code data-trim ata-noescape class="language-ts"><script type="text/template">
+							import {reflection} from "first-di";
+
+							@reflection
+							export class ProfileService
+							{
+								public async getUserProfile(): Promise<UserProfile> {...}
+							}
+						</script></code></pre>
+
+						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+							import {reflection} from "first-di";
+							import {AutoStore} from "reca";
+
+							@reflection
+							class ToDoController extends AutoStore {
+								constructor (readonly profileService: ProfileService) {
+									super();
+								}
+								...
+							}
+						</script></code></pre>
+					</section>
+
+					<section>
+						<h4>
+							2. Библиотека <a href="https://github.com/LabEG/first-di" target="_blank">First DI</a>
+							и классовый компонент
+						</h4>
+
+						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+							import {autowired, resolve, reflection} from "first-di";
+
+							class ToDoController<P> extends React.Component<P> {
+								// Устарел и не поддерживается новым стандартом декораторов
+								@autowired()
+								private readonly profileService!: ProfileService;
+
+								// Поддерживается актуальным стандартом
+								private readonly profileService = resolve(ProfileService);
+
+								public constructor (props: P) {
+									super(props);
+								}
+							}
+						</script></code></pre>
+					</section>
+
+					<section>
+						<h4>
+							3. Библиотека <a href="https://github.com/typestack/typedi" target="_blank">Type DI</a> и
+							классовый компонент
+						</h4>
+
+						<pre><code data-trim ata-noescape class="language-ts"><script type="text/template">
+							import {Service} from "typedi";
+
+							@Service
+							export class ProfileService
+							{
+								public async getUserProfile(): Promise<UserProfile> {...}
+							}
+						</script></code></pre>
+
+						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+							import {Container} from "typedi";
+
+							class ToDoController extends React.Component {
+								readonly profileService = Container.get(ProfileService);
+							}
+						</script></code></pre>
+					</section>
+
+					<section>
+						<h4>
+							Пример контроллера использующего сервисы на
+							<a href="https://github.com/LabEG/reca" target="_blank">ReCA</a>
+						</h4>
+
+						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+							class ToDoStore<P> extends AutoStore<P> {
+								public constructor (
+									private readonly profileService: ProfileService,
+									private readonly loggerService: LoggerService
+								) {...}
+
+								public async fetchProfile(): Promise<void> {
+									try {
+										this.profile = this.profileService.getProfile();
+									} catch (error: unknown) {
+										this.loggerService.error("Error in ToDo", error);
+									}
+								}
+							}
+						</script></code></pre>
+					</section>
+				</section>
+
+
+				<section>
+					<section>
+						<h3>
+							Слой <b style="color: #F9322C">Repository</b>
+						</h3>
+						<p>
+							Представляет из себя класс содержащий логику запросов данных к системе хранения: API, DB, Storadges, Memory.
+						</p>
+						<small>
+							Кроме WebSocket и WebTransport, они остаются в Services.
+						</small>
+					</section>
+
+					<section>
+						<h4>
+							Пример слоя <b style="color: #F9322C">Repository</b>
+						</h4>
+
+						<p>
+							Логика запроса профиля пользователя.
+						</p>
+
+						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+							@reflection
+							class ProfileRepository
+							{
+								public async getUserProfile(): Promise<UserProfile> {
+									const response = await fetch("/api/profile");
+									const data: unknown = await response.json();
+
+									if (typeof data === "object" && data !== null) {
+										return new UserProfile().fromJSON(data);
+									}
+
+									throw new Error("Wrong return type");
+								}
+							}
+						</script></code></pre>
+					</section>
+
+					<section>
+						<h4>
+							А почему не в <b style="color: #F9322C">Service</b>???
+						</h4>
+
+						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+							@reflection
+							class ProfileService
+							{
+								constructor (
+									private readonly profileRepo: ProfileRepository
+								) {}
+
+								public async getUserProfile(): Promise<UserProfile> {
+									const profile = await this.profileRepo.getUserProfile();
+									// логика обработки данных
+
+									return profile;
+								}
+							}
+						</script></code></pre>
+
+						<small>
+							Логика и метод хранения данных не должны зависеть друг от друга.
+						</small>
+
+					</section>
+				</section>
+
+
+				<section>
+					<section>
+						<h3>
+							Слой <b style="color: #F9322C">Models</b>
+						</h3>
+						<p>
+							Представляет из себя объект данных с набором свойств и методов.
+						</p>
+						<small>
+							В зависимости от места использования делятся на DTO, Domain Models, View Models, Entities.
+						</small>
+					</section>
+
+					<section>
+						<h4>
+							Пример слоя <b style="color: #F9322C">Models</b>
+						</h4>
+
+						<small>
+							Бизнес модель данных пользователя.
+						</small>
+
+						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+							class UserProfile {
+								public firstName: string = '';
+								public familyName: string = '';
+								public birthdate: Date = new Date();
+
+								public getFullName(): string {
+									return [this.firstName,this.familyName].join(' ');
+								}
+
+								public getAge(): number {
+									return new Date().getFullYear() -
+										this.birthdate.getFullYear();
+								}
+							}
+						</script></code></pre>
+					</section>
+
+					<section>
+						<h4>
+							Десериализация <b style="color: #F9322C">Models</b> через
+							<a href="https://github.com/LabEG/Serializable" target="_blank">Serializable</a>
+						</h4>
+
+						<small>
+							Создание структуры данных из последовательности байтов.
+						</small>
+
+						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+							import { jsonProperty, Serializable } from "ts-serializable";
+
+							class UserProfile extends Serializable {
+
+								@jsonProperty(String)
+								public firstName: string = '';
+
+								@jsonProperty(String, null)
+								public familyName: string | null = null;
+
+								@jsonProperty(Date)
+								public birthdate: Date = new Date();
+								...
+							}
+						</script></code></pre>
+					</section>
+
+					<section>
+						<h4>
+							Сущности из <b style="color: #F9322C">Models</b> через
+							<a href="https://typeorm.io/" target="_blank">Type ORM</a>
+						</h4>
+
+						<small>
+							Создание структуры базы данных из описания моделей.
+						</small>
+
+						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+							import {Entity, Column, Unique} from "typeorm";
+
+							@Entity("user_profiles")
+							class UserProfile {
+
+								@PrimaryGeneratedColumn("uuid")
+								public id?: string = void 0;
+
+								@Column()
+								public firstName: string = '';
+
+								...
+							}
+						</script></code></pre>
+					</section>
+
+					<section>
+						<h4>
+							Валидация <b style="color: #F9322C">Models</b> через
+							<a href="https://github.com/typestack/class-validator" target="_blank">Class Validator</a>
+						</h4>
+
+						<small>
+							Позволяет валидировать данные используя декораторы.
+						</small>
+
+						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+							import {MaxLength, MinDate} from "class-validator";
+
+							class UserProfile {
+
+								@MaxLength(255, {message: "Максимальная длина 255 символа"})
+								public firstName: string = '';
+
+								@MinDate(new Date(1970))
+								@MaxDate(new Date())
+								public birthdate: Date = new Date();
+
+								...
+							}
+						</script></code></pre>
+					</section>
+
+					<section>
+						<h4>
+							Преимущества <b style="color: #F9322C">Models</b>
+						</h4>
+
+						<small>
+							<ul>
+								<li>
+									<b>Бизнес правила хранятся в независимом от фреймворке месте</b> <br/>
+									<em>Пример</em>: Логику формы калькулятора можно заложить в Domain Models и переиспользовать в React и JQuery.
+								</li>
+								<br/>
+								<li class="fragment">
+									<b>Бизнес правила можно переиспользовать в разных частях приложения</b> <br/>
+									<em>Пример</em>: Логику валидации данных можно использовать и в формах и API.
+								</li>
+								<br/>
+								<li class="fragment">
+									<b>Защищают от мутаций и ускоряет код</b> <br/>
+									<em>Пример</em>: за счет отсутствия мутаций браузер генерирует лучший машинный код
+								</li>
+								<br/>
+								<li class="fragment">
+									<b>Значительно сокращает объем написания кода</b> <br/>
+									<em>Пример</em>: за счет того что одни и те же модели переиспользуются в разных местах
+								</li>
+							</ul>
+						</small>
+					</section>
+				</section>
+
+
+				<section>
+					<section>
+						<h3>
+							Чистая архитектура
+						</h3>
+						<img style="height: 30rem" src="/images/ca/clean-architecture.jpg" />
+					</section>
+
+					<section>
+						<h4>
+							Архитектура для веба
+						</h4>
+						<img style="height: 30rem" src="/images/layers.png" />
+					</section>
+
+					<section>
+						<h4>
+							Проблема Redux
+						</h4>
+						<img style="height: 30rem" src="/images/ca/redux.png" />
+					</section>
+
+					<section>
+						<h4>
+							Решение чистой архитектуры
+						</h4>
+						<img style="height: 30rem" src="/images/ca/ca-horizontal.png" />
+					</section>
+
+					<section>
+						<div style="position: relative; height: 50rem;">
+							<img style="position: absolute; transform: translateX(-50%);" class="fragment fade-in-then-out" src="/images/ca/sep-part.png" />
+							<img style="position: absolute; transform: translateX(-50%);" class="fragment fade-in-then-out" src="/images/ca/sep-ful.png" />
+						</div>
+					</section>
+
+				</section>
 
 			</div>
 		</div>
