@@ -35,6 +35,20 @@
 				</section>
 
 				<section>
+					<p>
+						Часть 1
+					</p>
+					<h3>
+						<span style="color: #F9322C">
+							Чистая архитектура
+						</span>
+					</h3>
+					<p>
+						&nbsp;
+					</p>
+				</section>
+
+				<section>
 					<section>
 						<h3>
 							О себе
@@ -961,7 +975,7 @@
 							Слой <b style="color: #F9322C">Repository</b>
 						</h3>
 						<p>
-							Представляет из себя класс содержащий логику запросов данных к системе хранения: API, DB, Storadges, Memory.
+							Представляет из себя класс содержащий логику запросов данных к системе хранения: API, DB, Storages, Memory.
 						</p>
 						<small>
 							Кроме WebSocket и WebTransport, они остаются в Services.
@@ -1182,6 +1196,130 @@
 				<section>
 					<section>
 						<h3>
+							Приложение в сборе
+						</h3>
+					</section>
+
+					<section>
+						<h4>
+							Model
+						</h4>
+
+						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+							import { jsonProperty, Serializable } from "ts-serializable";
+
+							class UserProfile extends Serializable {
+
+								@jsonProperty(String)
+								public firstName: string = "";
+
+								...
+
+								public getFullName(): string {
+									return [this.firstName,this.familyName].join(" ");
+								}
+							}
+						</script></code></pre>
+					</section>
+
+					<section>
+						<h4>
+							View
+						</h4>
+
+						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+							import {useStore} from "reca";
+							import {UserStore} from "./UserStore.store.ts";
+
+							const UserProfile = (props) => {
+								const store = useStore(UserStore);
+
+								return (
+									<div className="UserProfile">
+										{store.profile.firstName}
+
+										<button onClick={store.onAddClick}>Добавить</button>
+									</div>
+								)
+							};
+						</script></code></pre>
+					</section>
+
+					<section>
+						<h4>
+							Controller
+						</h4>
+
+						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+							import {AutoStore} from "reca";
+							@reflection
+							export class UserStore extends AutoStore {
+
+								public profile: UserProfile = new UserProfile();
+
+								public constructor (private profileService: ProfileService) {}
+
+								private async fetchProfile(): Promise<void> {
+									try {
+										this.profile = await this.profileService.getProfile();
+									} catch (error: unknown) {...}
+								}
+							}
+						</script></code></pre>
+					</section>
+
+					<section>
+						<h4>
+							Service
+						</h4>
+
+						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+							@reflection
+							class ProfileService
+							{
+								public constructor (
+									private readonly profileRepo: ProfileRepository
+								) {}
+
+								public async getUserProfile(): Promise<UserProfile> {
+									const profile = await this.profileRepo.getUserProfile();
+									// логика обработки данных
+
+									return profile;
+								}
+							}
+						</script></code></pre>
+					</section>
+
+					<section>
+						<h4>
+							Repository
+						</h4>
+
+						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+							@reflection
+							class ProfileRepository
+							{
+								public async getUserProfile(): Promise<UserProfile> {
+									const response = await fetch("/api/profile");
+									const data: unknown = await response.json();
+
+									if (typeof data === "object" && data !== null) {
+										return new UserProfile().fromJSON(data);
+									}
+
+									throw new Error("Wrong return type");
+								}
+							}
+						</script></code></pre>
+					</section>
+
+				</section>
+
+
+				<section>
+					<section>
+						<h3>
 							Чистая архитектура
 						</h3>
 						<img style="height: 30rem" src="/images/ca/clean-architecture.jpg" />
@@ -1210,13 +1348,456 @@
 
 					<section>
 						<div style="position: relative; height: 50rem;">
-							<img style="position: absolute; transform: translateX(-50%);" class="fragment fade-in-then-out" src="/images/ca/sep-part.png" />
-							<img style="position: absolute; transform: translateX(-50%);" class="fragment fade-in-then-out" src="/images/ca/sep-ful.png" />
+							<img style="position: absolute; transform: translateX(-50%);" src="/images/ca/sep-part.png" />
+							<img style="position: absolute; transform: translateX(-50%);" class="fragment fade-in" src="/images/ca/sep-ful.png" />
 						</div>
+					</section>
+				</section>
+
+
+				<section>
+					<p>
+						Часть 2
+					</p>
+					<h3>
+						<span style="color: #F9322C">
+							Фронтовые микросервисы
+						</span>
+					</h3>
+					<p>
+						&nbsp;
+					</p>
+				</section>
+
+
+				<section>
+					<section>
+						<h3>
+							Рост монолита
+						</h3>
+						<img style="height: 30rem" src="/images/ca/ca-horizontal.png" />
+					</section>
+
+					<section>
+						<h4>
+							Проблемы монолита
+						</h4>
+						<small>
+							<ul>
+								<li class="fragment">
+									<b>Снижение скорости разработки.</b> Большое монолитное приложение усложняет и замедляет разработку.
+								</li>
+								<br />
+								<li class="fragment">
+									<b>Масштабируемость.</b> Невозможно масштабировать отдельные компоненты.
+								</li>
+								<br />
+								<li class="fragment">
+									<b>Надежность.</b> Ошибка в одном модуле может повлиять на доступность всего приложения.
+								</li>
+								<br />
+								<li class="fragment">
+									<b>Препятствия для внедрения технологий.</b>
+									Любые изменения в инфраструктуре или языке разработки влияют на приложение целиком, что зачастую приводит к увеличению стоимости и временных затрат.
+								</li>
+								<br />
+								<li class="fragment">
+									<b>Недостаточная гибкость.</b> Возможности монолитных приложений ограничены используемыми технологиями.
+								</li>
+								<br />
+								<li class="fragment">
+									<b>Развертывание.</b> При внесении небольшого изменения потребуется повторное развертывание всего монолитного приложения.
+								</li>
+							</ul>
+						</small>
+					</section>
+
+					<section>
+						<h3>
+							Как решить проблемы?
+						</h3>
+						<div class="fragment">
+							<img style="height: 25rem" src="/images/ca/ca-cut.png" />
+							<p>
+								Порезать на микросервисы!
+							</p>
+						</div>
+					</section>
+
+					<section>
+						<h4>
+							Преимущества микросервисов
+						</h4>
+						<small>
+							<ul>
+								<li class="fragment">
+									<b>Гибкость.</b> Продвигайте гибкие методы работы среди небольших команд, которые регулярно выполняют развертывание.
+								</li>
+								<br />
+								<li class="fragment">
+									<b>Гибкое масштабирование.</b> Когда микросервис достигает предельной нагрузки,
+									можно быстро выполнить развертывание новых экземпляров данной службы в
+									сопутствующем кластере и снизить нагрузку.
+									Теперь мы работаем с несколькими держателями и без сохранения состояния,
+									а клиенты распределены по различным экземплярам.
+									С таким подходом мы можем поддерживать экземпляры гораздо большего размера.
+								</li>
+								<br />
+								<li class="fragment">
+									<b>Непрерывное развертывание.</b> Теперь у нас есть регулярные и ускоренные циклы релиза.
+									Раньше мы выпускали обновления раз в неделю, а теперь можем делать это примерно два-три раза в день.
+								</li>
+								<br />
+								<li class="fragment">
+									<b>Легкость обслуживания и тестирования.</b> Команды могут экспериментировать с новыми функциями и
+									возвращаться к предыдущей версии, если что-то не работает.
+									Это упрощает обновление кода и ускоряет выпуск новых функций на рынок.
+									Кроме того, в отдельных службах легко находить и исправлять ошибки и баги.
+								</li>
+							</ul>
+						</small>
+					</section>
+
+					<section>
+						<h4>
+							Еще преимущества микросервисов
+						</h4>
+						<small>
+							<ul>
+								<li class="fragment">
+									<b>Независимое развертывание.</b> Микросервисы представляют собой отдельные модули,
+									поэтому с ними можно легко и быстро выполнять независимое развертывание отдельных функций.
+								</li>
+								<br />
+								<li class="fragment">
+									<b>Гибкость технологий.</b> При использовании архитектуры микросервисов команды могут
+									выбирать инструменты с учетом своих предпочтений.
+								</li>
+								<br />
+								<li class="fragment">
+									<b>Высокая надежность.</b> Развертывая изменения для конкретной службы, можно не бояться,
+									что приложение выйдет из строя целиком.
+								</li>
+								<br />
+								<li class="fragment">
+									<b>Довольные команды.</b> Команды работающие с микросервисами
+									гораздо лучше отзываются о своей работе благодаря автономности и возможности
+									самостоятельно создавать и развертывать приложения, не дожидаясь одобрения запроса pull
+									в течение нескольких недель.
+								</li>
+							</ul>
+						</small>
+					</section>
+
+					<section>
+						<h4>
+							Цитата
+						</h4>
+						<p>
+							Большие проекты делаются не большим количеством людей в одной команде,
+							а&nbsp;большим количеством маленьких команд.
+						</p>
+						<small>
+							© Роберт Мартин, основатель Agile
+						</small>
 					</section>
 
 				</section>
 
+
+				<section>
+					<section>
+						<h3>
+							Как появлялись <span style="color: #F9322C">микросервисы</span>
+						</h3>
+						<p>
+							По мере необходимости выносились из монолита или создавались на другом стеке для решение других задач
+						</p>
+					</section>
+
+					<section>
+						<h4>
+							1. Пререндер
+						</h4>
+						<small>
+							<p class="fragment">
+								<b>Проблема:</b> Монолит выполнен как SPA приложение без SSR, поисковые боты не видят контент
+							</p>
+							<p class="fragment">
+								<b>Решение:</b> Сделать микросервис пререндера для поисковых ботов
+							</p>
+							<p class="fragment">
+								<b>Стек:</b> NestJS, Puppeteer
+							</p>
+							<p class="fragment">
+								<b>GitHub:</b> скоро
+							</p>
+						</small>
+					</section>
+
+					<section>
+						<h4>
+							2. Сниппет
+						</h4>
+						<small>
+							<p class="fragment">
+								<b>Проблема:</b> В социальные сети по ссылке должен встраиваться сниппет,
+								с&nbsp;текстом и картинкой. Картинка динамическая и имеет тысячи вариаций.
+								У&nbsp;фронтов много экспертизы по верстке, у беков нет
+							</p>
+							<p class="fragment">
+								<b>Решение:</b> Сделать микросервис генерации сниппетов и картинок в реалтайме
+							</p>
+							<p class="fragment">
+								<b>Стек:</b> NestJS, Node Canvas
+							</p>
+						</small>
+					</section>
+
+					<section>
+						<h4>
+							3. Оптимизатор картинок
+						</h4>
+						<small>
+							<p class="fragment">
+								<b>Проблема:</b> Картинок стало слишком много, их оптимизация на этапе сборки стала занимать много времени.
+								Нет возможности оптимизировать динамические картинки
+							</p>
+							<p class="fragment">
+								<b>Решение:</b> Сделать микросервис оптимизации картинок на лету
+							</p>
+							<p class="fragment">
+								<b>Стек:</b> NestJS, SharpJS
+							</p>
+							<p class="fragment">
+								<b>GitHub:</b>
+								<a href="https://github.com/MobileTeleSystems/image-optimize-react" target="_blank">Image Optimize</a>
+							</p>
+						</small>
+					</section>
+
+					<section>
+						<h4>
+							4. Статика
+						</h4>
+						<small>
+							<p class="fragment">
+								<b>Проблема:</b> Копирование статики в контейнер занимает слишком много времени на этапе сборки.
+								Надо шарить статику между микросервисами
+							</p>
+							<p class="fragment">
+								<b>Решение:</b> Вынести статику в отдельный микросервис
+							</p>
+							<p class="fragment">
+								<b>Стек:</b> Nginx
+							</p>
+							<p class="fragment">
+								<b>Будущее:</b> Заменить на S3 + микросервис для выгрузки статики
+							</p>
+						</small>
+					</section>
+
+					<section>
+						<h4>
+							5-7. Промо приложения
+						</h4>
+						<small>
+							<p class="fragment">
+								<b>Проблема:</b> Монолит вырос и стал требовать слишком много ресурсов на разработку.
+								Промо приложения при этом лежат баластом и не развиваются
+							</p>
+							<p class="fragment">
+								<b>Решение:</b> Вынести промо приложения в отдельный микросервис
+							</p>
+							<p class="fragment">
+								<b>Стек:</b> Nginx + React
+							</p>
+						</small>
+					</section>
+
+					<section>
+						<h4>
+							8. Спец проект Маркетолога
+						</h4>
+						<small>
+							<p class="fragment">
+								<b>Проблема:</b> Нет и не надо
+							</p>
+							<p class="fragment">
+								<b>Решение:</b> Разрабатывался как микросервис с независимым релизным циклом
+							</p>
+							<p class="fragment">
+								<b>Стек:</b> NextJS
+							</p>
+						</small>
+					</section>
+
+					<section>
+						<h4>
+							9. Блог ЗлОсь
+						</h4>
+						<small>
+							<p class="fragment">
+								<b>Проблема:</b> Перенести с другого проекта и немного другого стека
+							</p>
+							<p class="fragment">
+								<b>Решение:</b> Микросервис переносится за 1-2 часа без конфликта с другими микросервисами
+							</p>
+							<p class="fragment">
+								<b>Стек:</b> NextJS
+							</p>
+						</small>
+					</section>
+
+					<section>
+						<h4>
+							10. Логи
+						</h4>
+						<small>
+							<p class="fragment">
+								<b>Проблема:</b> ELK может собирать логи только с сервера
+							</p>
+							<p class="fragment">
+								<b>Решение:</b> Отправлять клиентские логи на микросервис логов для трансляции в ELK
+							</p>
+							<p class="fragment">
+								<b>Стек:</b> NestJS
+							</p>
+							<p class="fragment">
+								<b>GitHub:</b> скоро
+							</p>
+						</small>
+					</section>
+
+					<section>
+						<h4>
+							11. Emails (Будущее)
+						</h4>
+						<small>
+							<p class="fragment">
+								<b>Проблема:</b> Тестировщики не могут проверить верстку писем без разработчиков.
+								Фронтенд разработчики не могут обновить верстку письма без бекенд разработчиков
+							</p>
+							<p class="fragment">
+								<b>Решение:</b> Микросервис где тестировщики смогут сами отправить себе письма,
+								а бекендеры будут забирать готовую верстку по API
+							</p>
+							<p class="fragment">
+								<b>Стек:</b> NextJS
+							</p>
+						</small>
+					</section>
+
+					<section>
+						<h4>
+							12. WebPrometheus (Будущее)
+						</h4>
+						<small>
+							<p class="fragment">
+								<b>Проблема:</b> Мониторинг посредством Prometheus и Grafana работает только на сервере
+							</p>
+							<p class="fragment">
+								<b>Решение:</b> Сделать микросервис трансляции клиентских метрик в Prometheus
+								Вывести в Grafana метрики Web Vitals.
+							</p>
+							<p class="fragment">
+								<b>Стек:</b> NestJS
+							</p>
+						</small>
+					</section>
+
+					<section>
+						<h4>
+							13. Компоненты
+						</h4>
+						<small>
+							<p class="fragment">
+								<b>Проблема:</b> Общие компоненты надо переиспользовать между микросервисами
+							</p>
+							<p class="fragment">
+								<b>Решение:</b> Вынести общие компоненты в npm библиотеку и сделать микросервис разработки компонентов
+							</p>
+							<p class="fragment">
+								<b>Стек:</b> NextJS
+							</p>
+						</small>
+					</section>
+
+					<section>
+						<h4>
+							14. Микрофронтенды
+						</h4>
+						<small>
+							<p class="fragment">
+								<b>Проблема:</b> Общие части приложений надо переиспользовать и обновлять без доработки в микросервисах
+							</p>
+							<p class="fragment">
+								<b>Решение:</b> Сделать микросервис разработки микрофронтендов
+							</p>
+							<p class="fragment">
+								<b>Стек:</b> NextJS
+							</p>
+						</small>
+					</section>
+				</section>
+
+
+				<section>
+					<section>
+						<h3>
+							Как выделить <span style="color: #F9322C">микросервис</span>?
+						</h3>
+						<br/>
+						<small>
+							<ul>
+								<li class="fragment">
+									Разделы приложений: Лендинг, Кабинет, Админка, Блог, Справка, Документация
+								</li>
+								<br/>
+								<li class="fragment">
+									Изолированные приложения: Промо проекты и промо страницы
+								</li>
+								<br/>
+								<li class="fragment">
+									Статика
+								</li>
+								<br/>
+								<li class="fragment">
+									Инраструктурные сервисы: Авторизация, Логи, Мониторинг
+								</li>
+								<br/>
+								<li class="fragment">
+									Вспомогательные сервисы: Пререндер, Сниппет, Компоненты, Микрофронтенды
+								</li>
+							</ul>
+						</small>
+					</section>
+				</section>
+
+
+				<section>
+					<section>
+						<h3>
+							Схема Микросервисов
+						</h3>
+						<img style="height: 34rem" src="/images/microservices/microservices.png" />
+					</section>
+				</section>
+
+
+				<section>
+					<p>
+						Часть 3
+					</p>
+					<h3>
+						<span style="color: #F9322C">
+							Микрофронтенды
+						</span>
+					</h3>
+					<p>
+						&nbsp;
+					</p>
+				</section>
 			</div>
 		</div>
 
