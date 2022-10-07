@@ -1763,7 +1763,7 @@
 								</li>
 								<br/>
 								<li class="fragment">
-									Инраструктурные сервисы: Авторизация, Логи, Мониторинг
+									Инфраструктурные сервисы: Авторизация, Логи, Мониторинг
 								</li>
 								<br/>
 								<li class="fragment">
@@ -1798,6 +1798,303 @@
 						&nbsp;
 					</p>
 				</section>
+
+
+				<section>
+					<section>
+						<h3>
+							Что такое <span style="color: #F9322C">микрофронтенд</span>?
+						</h3>
+						<p>
+							Микроприложение или виджет динамически встраиваемый в более крупное веб приложение.
+						</p>
+					</section>
+
+					<section>
+						<h4>
+							Требования к <span style="color: #F9322C">микрофронтендам</span>
+						</h4>
+						<small>
+							<ul>
+								<li class="fragment">
+									<b>Независимость от внешнего проекта</b><br/>
+									Микрофронтенд должен включать в себя все свои зависимости и быть независим от системы сборки
+								</li>
+								<br/>
+								<li class="fragment">
+									<b>Использование микрофреймворков и легковесных библиотек</b><br/>
+									React, Angular, Vue - слишком тяжелые. Легкие аналоги Preact, Svelte, SolidJS
+								</li>
+								<br/>
+								<li class="fragment">
+									<b>Использовать модули</b><br/>
+									Микрофронтенд внедряется в проект посредствам динамического импорта
+								</li>
+								<br/>
+								<li class="fragment">
+									<b>Не использовать глобальные переменные</b><br/>
+									Глобальные переменные JS или CSS приведут к появлению конфликтов
+								</li>
+								<br/>
+								<li class="fragment">
+									<b>Независим от внешних настроек стилей</b><br/>
+									Компоненты внутри микрофронтенда должны использовать собственный CSS Reset
+								</li>
+								<br/>
+								<li class="fragment">
+									<b>Использовать авторизацию по OpenID</b><br/>
+									Авторизация на куках работает в только рамках одного домена
+								</li>
+							</ul>
+						</small>
+					</section>
+				</section>
+
+
+				<section>
+					<section>
+						<h3>
+							Создание <span style="color: #F9322C">микрофронтенда</span>
+						</h3>
+						<p>
+							Микрофронтенд представляет из себя js файл с двумя экспортируемыми функциями
+							<span style="color: #2c6df9">render</span> и <span style="color: #2c6df9">clear</span>.
+						</p>
+					</section>
+
+					<section>
+						<h4>
+							Функция <span style="color: #2c6df9">render</span>
+						</h4>
+
+						<small>
+							Служит для отрисовки микрофронтенда. Принимает в качестве
+							параметров элемент в который необходимо врендерить микрофронтенд и конфиг микрофронтенда
+						</small>
+
+						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+							import ReactDOM from "react-dom";
+
+							let memRootElement: HTMLElement | null = null;
+
+							export const render = (elem: HTMLElement, config?: Config) => {
+								try {
+									memRootElement = elem;
+
+									ReactDOM.render(<App config={config} />, elem);
+
+								} catch (error: unknown) {
+									logger.error("Error on draw widget", error);
+								}
+							};
+						</script></code></pre>
+					</section>
+
+
+					<section>
+						<h4>
+							Функция <span style="color: #2c6df9">clear</span>
+						</h4>
+
+						<small>
+							Служит для для зачистки приложения от присутствия микрофронтенда.
+						</small>
+
+						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+							export const clear = (): void => {
+								ReactDOM.render([], memRootElement);
+							};
+						</script></code></pre>
+					</section>
+				</section>
+
+
+				<section>
+					<section>
+						<h3>
+							Сборка <span style="color: #F9322C">микрофронтенда</span>
+						</h3>
+						<p>
+							Собирается любым бандлером rollup, webpack, vite, swc и т.п.
+						</p>
+					</section>
+
+					<section>
+						<h4>
+							Сборка в Rollup
+						</h4>
+
+						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+							export default {
+								input: [
+									"src/microfront-first-main.tsx",
+									"src/microfront-second-main.tsx"
+								],
+								plugins: [...],
+								output: [
+									{
+										dir: "dist",
+										format: "esm",
+										entryFileNames: "[name].esm.min.js",
+									}
+								]
+							};
+						</script></code></pre>
+					</section>
+
+
+					<section>
+						<h4>
+							Сборка в Webpack
+						</h4>
+
+						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+							module.exports = {
+								entry: {
+									microfrontFirst: "src/microfront-first-main.tsx",
+									microfrontSecond: "src/microfront-second-main.tsx"
+								},
+								plugins: [...],
+								output: {
+									filename: "[name].esm.min.js",
+									path: path.join(__dirname, "dist")
+								},
+							};
+						</script></code></pre>
+					</section>
+				</section>
+
+
+				<section>
+					<section>
+						<h3>
+							Подключенuе <span style="color: #F9322C">микрофронтенда</span>
+						</h3>
+						<small>
+							Используется стандартная функция JS - динамический импорт.
+							На 2022 год нативную поддержку имеют 96% браузеров.
+							Для более старых можно использовать CJS модули и функцию require.
+						</small>
+					</section>
+
+					<section>
+						<h4>
+							Подключение через импорт
+						</h4>
+
+						<small>
+							В Typescript путь должен быть прописан через переменную.
+							Иначе будет ругаться на отсутствие тайпингов.
+						</small>
+
+						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+							const microElement = document.querySelector("#micro");
+
+							const path = "https://tb.mts.ru/micro/header.esm.min.js";
+							const widget = await import(path);
+
+							widget.render(microElement, {openId: ""});
+						</script></code></pre>
+					</section>
+
+					<section>
+						<h4>
+							Костыль для Webpack
+						</h4>
+
+						<small>
+							Webpack пытается встроить микрофронтенд в сборку.
+							Для исправления этого поведения необходимо вынести импорт в скрытую от webpack часть.
+						</small>
+
+						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+							const microElement = document.querySelector("#micro");
+
+							const webpackDynamicImport = new Function(
+								"return import('https://tb.mts.ru/micro/header.esm.min.js')"
+							);
+							const widget = await webpackDynamicImport();
+
+							widget.render(microElement, {openId: ""});
+						</script></code></pre>
+					</section>
+
+					<section>
+						<h4>
+							Решение для старых браузеров
+						</h4>
+
+						<small>
+							Если необходима поддержка старых браузеров необходимо сделать вторую версию микрофронтенда в формате CJS.
+							Перед импортом проверять поддержку динамического импорта.
+							И импортировать CJS в случае не поддержки динамичесокго импорта.
+						</small>
+
+						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+							const microElement = document.querySelector("#micro");
+							let widget = nul;
+							try {
+								new Function("(async(a=0)=>({...{a}},await import('')))()");
+
+								const path = "https://tb.mts.ru/micro/header.esm.min.js";
+								widget = await import(path);
+
+							} catch (err) {
+								widget = require("https://tb.mts.ru/micro/header.cjs.min.js");
+							}
+
+							widget.render(microElement, {openId: ""});
+						</script></code></pre>
+					</section>
+				</section>
+
+
+				<section>
+					<section>
+						<h3>
+							Частые ошибки
+						</h3><small>
+							<ul>
+								<li class="fragment">
+									<b>Импорт скрипта через script в head</b><br/>
+									Неизвестно когда скрипт будет подгружен. Регистрирует глобальные переменные
+								</li>
+								<br/>
+								<li class="fragment">
+									<b>Скрипт сам начинает работать</b><br/>
+									Скрипт должен начать работу только когда его запустят
+								</li>
+								<br/>
+								<li class="fragment">
+									<b>Не учитывается SPA</b><br/>
+									В 2022 году большинство приложений это SPA
+								</li>
+								<br/>
+								<li class="fragment">
+									<b>Не освобождается память</b><br/>
+									При выходе со страницы микрофронтенда память должна быть освобождена
+								</li>
+							</ul>
+						</small>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<div style="position: relative; height: 50rem;">
+							<img style="position: absolute; transform: translateX(-50%);" src="/images/ca/sep-ful.png" />
+						</div>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<div style="position: relative; height: 50rem;">
+							<img style="position: absolute; transform: translateX(-50%);" src="/images/end.jpg" />
+						</div>
+					</section>
+				</section>
+
 			</div>
 		</div>
 
