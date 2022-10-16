@@ -206,8 +206,8 @@
 							Не уступающие Libre Office и MS Office
 						</small>
 						<div style="position: relative; height: 40rem;">
-							<img style="position: absolute; transform: translateX(-50%);" class="fragment fade-in-then-out" src="/images/sample-office.jpeg" />
-							<img style="position: absolute; transform: translateX(-50%);" class="fragment fade-in-then-out" src="/images/sample-office-2.png" />
+							<img style="position: absolute; transform: translateX(-50%);" class="fragment fade-in-then-out" src="./images/sample-office.jpeg" />
+							<img style="position: absolute; transform: translateX(-50%);" class="fragment fade-in-then-out" src="./images/sample-office-2.png" />
 						</div>
 					</section>
 
@@ -216,9 +216,9 @@
 							Не уступающие 3ds Max и Autocad
 						</small>
 						<div style="position: relative; height: 40rem;">
-							<img style="position: absolute; transform: translateX(-50%);" class="fragment fade-in-then-out" src="/images/sample-3ds-max.jpg" />
-							<img style="position: absolute; transform: translateX(-50%);" class="fragment fade-in-then-out" src="/images/sample-3ds-max-2.jpg" />
-							<img style="position: absolute; transform: translateX(-50%);" class="fragment fade-in-then-out" src="/images/sample-autocad.jpg" />
+							<img style="position: absolute; transform: translateX(-50%);" class="fragment fade-in-then-out" src="./images/sample-3ds-max.jpg" />
+							<img style="position: absolute; transform: translateX(-50%);" class="fragment fade-in-then-out" src="./images/sample-3ds-max-2.jpg" />
+							<img style="position: absolute; transform: translateX(-50%);" class="fragment fade-in-then-out" src="./images/sample-autocad.jpg" />
 						</div>
 					</section>
 
@@ -227,9 +227,9 @@
 							Не уступающие Photoshop и CorelDraw
 						</small>
 						<div style="position: relative; height: 40rem;">
-							<img style="position: absolute; transform: translateX(-50%);" class="fragment fade-in-then-out" src="/images/sample-photoshop.png" />
-							<img style="position: absolute; transform: translateX(-50%);" class="fragment fade-in-then-out" src="/images/sample-photoshop-2.jpg" />
-							<img style="position: absolute; transform: translateX(-50%);" class="fragment fade-in-then-out" src="/images/sample-coreldraw.png" />
+							<img style="position: absolute; transform: translateX(-50%);" class="fragment fade-in-then-out" src="./images/sample-photoshop.png" />
+							<img style="position: absolute; transform: translateX(-50%);" class="fragment fade-in-then-out" src="./images/sample-photoshop-2.jpg" />
+							<img style="position: absolute; transform: translateX(-50%);" class="fragment fade-in-then-out" src="./images/sample-coreldraw.png" />
 						</div>
 					</section>
 
@@ -253,7 +253,7 @@
 						<h3>
 							Это книга-<span style="color: #F9322C">бестселлер</span>
 						</h3>
-						<img style="height: 32rem;" src="/images/book-ca.webp" />
+						<img style="height: 32rem;" src="./images/book-ca.webp" />
 					</section>
 
 					<section>
@@ -436,7 +436,7 @@
 						<h3>
 							Связи слоев
 						</h3>
-						<img style="height: 34rem" src="/images/layers.png" />
+						<img style="height: 34rem" src="./images/layers.png" />
 					</section>
 				</section>
 
@@ -958,7 +958,7 @@
 
 								public async fetchProfile(): Promise<void> {
 									try {
-										this.profile = this.profileService.getProfile();
+										this.profile = await this.profileService.getProfile();
 									} catch (error: unknown) {
 										this.loggerService.error("Error in ToDo", error);
 									}
@@ -1322,34 +1322,34 @@
 						<h3>
 							Чистая архитектура
 						</h3>
-						<img style="height: 30rem" src="/images/ca/clean-architecture.jpg" />
+						<img style="height: 30rem" src="./images/ca/clean-architecture.jpg" />
 					</section>
 
 					<section>
 						<h4>
 							Архитектура для веба
 						</h4>
-						<img style="height: 30rem" src="/images/layers.png" />
+						<img style="height: 30rem" src="./images/layers.png" />
 					</section>
 
 					<section>
 						<h4>
 							Проблема Redux
 						</h4>
-						<img style="height: 30rem" src="/images/ca/redux.png" />
+						<img style="height: 30rem" src="./images/ca/redux.png" />
 					</section>
 
 					<section>
 						<h4>
 							Решение чистой архитектуры
 						</h4>
-						<img style="height: 30rem" src="/images/ca/ca-horizontal.png" />
+						<img style="height: 30rem" src="./images/ca/ca-horizontal.png" />
 					</section>
 
 					<section>
 						<div style="position: relative; height: 50rem;">
-							<img style="position: absolute; transform: translateX(-50%);" src="/images/ca/sep-part.png" />
-							<img style="position: absolute; transform: translateX(-50%);" class="fragment fade-in" src="/images/ca/sep-ful.png" />
+							<img style="position: absolute; transform: translateX(-50%);" src="./images/ca/sep-part.png" />
+							<img style="position: absolute; transform: translateX(-50%);" class="fragment fade-in" src="./images/ca/sep-ful.png" />
 						</div>
 					</section>
 				</section>
@@ -1375,7 +1375,7 @@
 						<h3>
 							Рост монолита
 						</h3>
-						<img style="height: 30rem" src="/images/ca/ca-horizontal.png" />
+						<img style="height: 30rem" src="./images/ca/ca-horizontal.png" />
 					</section>
 
 					<section>
@@ -1417,7 +1417,7 @@
 							Как решить проблемы?
 						</h3>
 						<div class="fragment">
-							<img style="height: 25rem" src="/images/ca/ca-cut.png" />
+							<img style="height: 25rem" src="./images/ca/ca-cut.png" />
 							<p>
 								Порезать на микросервисы!
 							</p>
@@ -1780,7 +1780,7 @@
 						<h3>
 							Схема Микросервисов
 						</h3>
-						<img style="height: 34rem" src="/images/microservices/microservices.png" />
+						<img style="height: 34rem" src="./images/microservices/microservices.png" />
 					</section>
 				</section>
 
@@ -2082,7 +2082,7 @@
 				<section>
 					<section>
 						<div style="position: relative; height: 50rem;">
-							<img style="position: absolute; transform: translateX(-50%);" src="/images/ca/sep-ful.png" />
+							<img style="position: absolute; transform: translateX(-50%);" src="./images/ca/sep-ful.png" />
 						</div>
 					</section>
 				</section>
@@ -2090,7 +2090,7 @@
 				<section>
 					<section>
 						<div style="position: relative; height: 50rem;">
-							<img style="position: absolute; transform: translateX(-50%);" src="/images/end.jpg" />
+							<img style="position: absolute; transform: translateX(-50%);" src="./images/end.jpg" />
 						</div>
 					</section>
 				</section>
