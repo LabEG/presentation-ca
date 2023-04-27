@@ -17,14 +17,12 @@
 		<div class="reveal">
 			<div class="slides">
 				<section>
-					<h3>
-						<span style="color: #F9322C">
-							Чистая архитектура, Фронтовые микросервисы,
-							микрофронтенды
+					<h4>
+						<span style="color: #ff0032">
+							Зачем фронтенду чистая архитектура, <br />
+							и как она помогает строить микросервисы и микрофронтенды
 						</span>
-						<br />
-						<small>для Веб разработки</small>
-					</h3>
+					</h4>
 					<br>
 					<p>
 						Евгений Лабутин
@@ -258,21 +256,6 @@
 					</section>
 
 					<section>
-						<p>
-							Купить <a href="https://www.ozon.ru/product/chistaya-arhitektura-iskusstvo-razrabotki-programmnogo-obespecheniya-144499396/?sh=OlX_fhdeRA" target="_blank">можно на Ozon</a>
-						</p>
-						<p class="fragment">
-							Прочитать вводную можно <br />
-							<a href="https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html" target="_blank">в оригинале</a>
-							или
-							<a href="https://habr.com/ru/post/269589/" target="_blank">в переводе</a>
-						</p>
-						<p  class="fragment">
-							В книге гораздо детальнее <br /> чем в презентации
-						</p>
-					</section>
-
-					<section>
 						<h3>
 							Еще почитать...
 						</h3>
@@ -488,68 +471,6 @@
 							);
 						</script></code></pre>
 					</section>
-
-					<section>
-						<h4>
-							Пример слоя <b style="color: #F9322C">View</b> в Android и Xamarin
-						</h4>
-
-						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
-							<?xml version="1.0" encoding="utf-8"?>
-							<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-										android:layout_width="match_parent"
-										android:layout_height="match_parent"
-										android:orientation="vertical" >
-								<TextView android:id="@+id/text"
-										android:layout_width="wrap_content"
-										android:layout_height="wrap_content"
-										android:text="Hello, I am a TextView" />
-								<Button android:id="@+id/button"
-										android:layout_width="wrap_content"
-										android:layout_height="wrap_content"
-										android:text="Hello, I am a Button" />
-							</LinearLayout>
-						</script></code></pre>
-					</section>
-
-					<section>
-						<h4>
-							Пример слоя <b style="color: #F9322C">View</b> в WPF
-						</h4>
-
-						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
-							<ListView d:ItemsSource="{d:SampleData ItemCount=3}">
-								<ListView.ItemTemplate>
-								   <DataTemplate>
-									   <StackPanel Orientation="Horizontal">
-										   <Image Width="50" Source="{Binding ProfilePicture}"/>
-										   <StackPanel Orientation="Vertical">
-											   <TextBlock Text="{Binding FirstName}" Margin="5"/>
-											   <Label Content="{Binding LastName}"/>
-											</StackPanel>
-										</StackPanel>
-									</DataTemplate>
-								</ListView.ItemTemplate>
-							</ListView>
-						</script></code></pre>
-					</section>
-
-					<section>
-						<h4>
-							Пример слоя <b style="color: #F9322C">View</b> в C# Asp.Net
-						</h4>
-
-						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
-							@model Student
-
-							<h2>Student Detail:</h2>
-							<ul>
-								<li>Student Id: @Model.StudentId</li>
-								<li>Student Name: @Model.StudentName</li>
-								<li>Age: @Model.Age</li>
-							</ul>
-						</script></code></pre>
-					</section>
 				</section>
 
 				<section>
@@ -582,27 +503,6 @@
 									this.todos.splice(index, 1);
 								}
 
-							}
-						</script></code></pre>
-					</section>
-
-					<section>
-						<h4>
-							Пример слоя <b style="color: #F9322C">Controller</b> в Android
-						</h4>
-
-						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
-							class ToDoActivity {
-								public var currentTodo: String = "";
-								public var todos: MutableList<String> = ArrayList();
-
-								public fun handleAddTodo (): Unit {
-									this.todos.add(this.currentTodo);
-								}
-
-								public fun handleDeleteTodo (index: Int): Unit {
-									this.todos.drop(index);
-								}
 							}
 						</script></code></pre>
 					</section>
@@ -912,31 +812,7 @@
 
 					<section>
 						<h4>
-							2. Библиотека <a href="https://github.com/LabEG/first-di" target="_blank">First DI</a>
-							и классовый компонент
-						</h4>
-
-						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
-							import {autowired, resolve, reflection} from "first-di";
-
-							class ToDoController<P> extends React.Component<P> {
-								// Устарел и не поддерживается новым стандартом декораторов
-								@autowired()
-								private readonly profileService!: ProfileService;
-
-								// Поддерживается актуальным стандартом
-								private readonly profileService = resolve(ProfileService);
-
-								public constructor (props: P) {
-									super(props);
-								}
-							}
-						</script></code></pre>
-					</section>
-
-					<section>
-						<h4>
-							3. Библиотека <a href="https://github.com/typestack/typedi" target="_blank">Type DI</a> и
+							2. Библиотека <a href="https://github.com/typestack/typedi" target="_blank">Type DI</a> и
 							классовый компонент
 						</h4>
 
@@ -1518,243 +1394,6 @@
 						</small>
 					</section>
 
-				</section>
-
-
-				<section>
-					<section>
-						<h3>
-							Как появлялись <span style="color: #F9322C">микросервисы</span>
-						</h3>
-						<p>
-							По мере необходимости выносились из монолита или создавались на другом стеке для решение других задач
-						</p>
-					</section>
-
-					<section>
-						<h4>
-							1. Пререндер
-						</h4>
-						<small>
-							<p class="fragment">
-								<b>Проблема:</b> Монолит выполнен как SPA приложение без SSR, поисковые боты не видят контент
-							</p>
-							<p class="fragment">
-								<b>Решение:</b> Сделать микросервис пререндера для поисковых ботов
-							</p>
-							<p class="fragment">
-								<b>Стек:</b> NestJS, Puppeteer
-							</p>
-							<p class="fragment">
-								<b>GitHub:</b> скоро
-							</p>
-						</small>
-					</section>
-
-					<section>
-						<h4>
-							2. Сниппет
-						</h4>
-						<small>
-							<p class="fragment">
-								<b>Проблема:</b> В социальные сети по ссылке должен встраиваться сниппет,
-								с&nbsp;текстом и картинкой. Картинка динамическая и имеет тысячи вариаций.
-								У&nbsp;фронтов много экспертизы по верстке, у беков нет
-							</p>
-							<p class="fragment">
-								<b>Решение:</b> Сделать микросервис генерации сниппетов и картинок в реалтайме
-							</p>
-							<p class="fragment">
-								<b>Стек:</b> NestJS, Node Canvas
-							</p>
-						</small>
-					</section>
-
-					<section>
-						<h4>
-							3. Оптимизатор картинок
-						</h4>
-						<small>
-							<p class="fragment">
-								<b>Проблема:</b> Картинок стало слишком много, их оптимизация на этапе сборки стала занимать много времени.
-								Нет возможности оптимизировать динамические картинки
-							</p>
-							<p class="fragment">
-								<b>Решение:</b> Сделать микросервис оптимизации картинок на лету
-							</p>
-							<p class="fragment">
-								<b>Стек:</b> NestJS, SharpJS
-							</p>
-							<p class="fragment">
-								<b>GitHub:</b>
-								<a href="https://github.com/MobileTeleSystems/image-optimize-react" target="_blank">Image Optimize</a>
-							</p>
-						</small>
-					</section>
-
-					<section>
-						<h4>
-							4. Статика
-						</h4>
-						<small>
-							<p class="fragment">
-								<b>Проблема:</b> Копирование статики в контейнер занимает слишком много времени на этапе сборки.
-								Надо шарить статику между микросервисами
-							</p>
-							<p class="fragment">
-								<b>Решение:</b> Вынести статику в отдельный микросервис
-							</p>
-							<p class="fragment">
-								<b>Стек:</b> Nginx
-							</p>
-							<p class="fragment">
-								<b>Будущее:</b> Заменить на S3 + микросервис для выгрузки статики
-							</p>
-						</small>
-					</section>
-
-					<section>
-						<h4>
-							5-7. Промо приложения
-						</h4>
-						<small>
-							<p class="fragment">
-								<b>Проблема:</b> Монолит вырос и стал требовать слишком много ресурсов на разработку.
-								Промо приложения при этом лежат баластом и не развиваются
-							</p>
-							<p class="fragment">
-								<b>Решение:</b> Вынести промо приложения в отдельный микросервис
-							</p>
-							<p class="fragment">
-								<b>Стек:</b> Nginx + React
-							</p>
-						</small>
-					</section>
-
-					<section>
-						<h4>
-							8. Спец проект Маркетолога
-						</h4>
-						<small>
-							<p class="fragment">
-								<b>Проблема:</b> Нет и не надо
-							</p>
-							<p class="fragment">
-								<b>Решение:</b> Разрабатывался как микросервис с независимым релизным циклом
-							</p>
-							<p class="fragment">
-								<b>Стек:</b> NextJS
-							</p>
-						</small>
-					</section>
-
-					<section>
-						<h4>
-							9. Блог ЗлОсь
-						</h4>
-						<small>
-							<p class="fragment">
-								<b>Проблема:</b> Перенести с другого проекта и немного другого стека
-							</p>
-							<p class="fragment">
-								<b>Решение:</b> Микросервис переносится за 1-2 часа без конфликта с другими микросервисами
-							</p>
-							<p class="fragment">
-								<b>Стек:</b> NextJS
-							</p>
-						</small>
-					</section>
-
-					<section>
-						<h4>
-							10. Логи
-						</h4>
-						<small>
-							<p class="fragment">
-								<b>Проблема:</b> ELK может собирать логи только с сервера
-							</p>
-							<p class="fragment">
-								<b>Решение:</b> Отправлять клиентские логи на микросервис логов для трансляции в ELK
-							</p>
-							<p class="fragment">
-								<b>Стек:</b> NestJS
-							</p>
-							<p class="fragment">
-								<b>GitHub:</b> скоро
-							</p>
-						</small>
-					</section>
-
-					<section>
-						<h4>
-							11. Emails (Будущее)
-						</h4>
-						<small>
-							<p class="fragment">
-								<b>Проблема:</b> Тестировщики не могут проверить верстку писем без разработчиков.
-								Фронтенд разработчики не могут обновить верстку письма без бекенд разработчиков
-							</p>
-							<p class="fragment">
-								<b>Решение:</b> Микросервис где тестировщики смогут сами отправить себе письма,
-								а бекендеры будут забирать готовую верстку по API
-							</p>
-							<p class="fragment">
-								<b>Стек:</b> NextJS
-							</p>
-						</small>
-					</section>
-
-					<section>
-						<h4>
-							12. WebPrometheus (Будущее)
-						</h4>
-						<small>
-							<p class="fragment">
-								<b>Проблема:</b> Мониторинг посредством Prometheus и Grafana работает только на сервере
-							</p>
-							<p class="fragment">
-								<b>Решение:</b> Сделать микросервис трансляции клиентских метрик в Prometheus
-								Вывести в Grafana метрики Web Vitals.
-							</p>
-							<p class="fragment">
-								<b>Стек:</b> NestJS
-							</p>
-						</small>
-					</section>
-
-					<section>
-						<h4>
-							13. Компоненты
-						</h4>
-						<small>
-							<p class="fragment">
-								<b>Проблема:</b> Общие компоненты надо переиспользовать между микросервисами
-							</p>
-							<p class="fragment">
-								<b>Решение:</b> Вынести общие компоненты в npm библиотеку и сделать микросервис разработки компонентов
-							</p>
-							<p class="fragment">
-								<b>Стек:</b> NextJS
-							</p>
-						</small>
-					</section>
-
-					<section>
-						<h4>
-							14. Микрофронтенды
-						</h4>
-						<small>
-							<p class="fragment">
-								<b>Проблема:</b> Общие части приложений надо переиспользовать и обновлять без доработки в микросервисах
-							</p>
-							<p class="fragment">
-								<b>Решение:</b> Сделать микросервис разработки микрофронтендов
-							</p>
-							<p class="fragment">
-								<b>Стек:</b> NextJS
-							</p>
-						</small>
-					</section>
 				</section>
 
 
