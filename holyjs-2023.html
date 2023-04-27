@@ -456,17 +456,17 @@
 
 						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
 							const Comment = (props) => (
-								<div className="Comment">
-									<div className="UserInfo">
+								<div className="сomment">
+									<div className="user-info">
 										<img
-											className="Avatar"
+											className="avatar"
 											src={props.author.avatarUrl}
 											alt={props.author.name}
 										/>
-										<div className="UserInfo-name">{props.author.name}</div>
+										<div className="user-info-name">{props.author.name}</div>
 									</div>
-									<div className="Comment-text">{props.text}</div>
-									<div className="Comment-date">{props.date}</div>
+									<div className="comment-text">{props.text}</div>
+									<div className="comment-date">{props.date}</div>
 								</div>
 							);
 						</script></code></pre>
@@ -558,7 +558,7 @@
 
 						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
 							export const todoView = (ctrl: ToDo, props) => (
-								<div className="Comment">
+								<div className="comment">
 									<button onClick={() => ctrl.handleAddTodo()}>
 										Кнопка
 									</button>
