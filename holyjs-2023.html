@@ -33,20 +33,6 @@
 				</section>
 
 				<section>
-					<p>
-						Часть 1
-					</p>
-					<h3>
-						<span style="color: #F9322C">
-							Чистая архитектура
-						</span>
-					</h3>
-					<p>
-						&nbsp;
-					</p>
-				</section>
-
-				<section>
 					<section>
 						<h3>
 							О себе
@@ -102,12 +88,9 @@
 
 					<section>
 						<small>
-							Национальный центр обороны и ООО Восток уголь
+							ООО Восток уголь
 						</small>
 						<div style="position: relative; height: 40rem;">
-							<img style="position: absolute; transform: translateX(-50%);" class="fragment fade-in-then-out" src="https://labeg.ru/content/images/portfolio/avilex/ncuo_10-1920w.webp" />
-							<img style="position: absolute; transform: translateX(-50%);" class="fragment fade-in-then-out" src="https://labeg.ru/content/images/portfolio/avilex/ncuo_02-1920w.webp" />
-							<img style="position: absolute; transform: translateX(-50%);" class="fragment fade-in-then-out" src="https://labeg.ru/content/images/portfolio/avilex/ncuo_04-1920w.webp" />
 							<img style="position: absolute; transform: translateX(-50%);" class="fragment fade-in-then-out" src="https://labeg.ru/content/images/portfolio/avilex/vu_01-1920w.webp" />
 						</div>
 					</section>
@@ -188,6 +171,20 @@
 				</section>
 
 				<section>
+					<p>
+						Часть 1
+					</p>
+					<h3>
+						<span style="color: #F9322C">
+							Чистая архитектура
+						</span>
+					</h3>
+					<p>
+						&nbsp;
+					</p>
+				</section>
+
+				<section>
 					<section>
 						<h3>
 							Для кого ???
@@ -205,8 +202,7 @@
 							Не уступающие Libre Office и MS Office
 						</small>
 						<div style="position: relative; height: 40rem;">
-							<img style="position: absolute; transform: translateX(-50%);" class="fragment fade-in-then-out" src="./images/sample-office.jpeg" />
-							<img style="position: absolute; transform: translateX(-50%);" class="fragment fade-in-then-out" src="./images/sample-office-2.png" />
+							<img style="position: absolute; transform: translateX(-50%);" src="./images/sample-office.jpeg" />
 						</div>
 					</section>
 
@@ -215,9 +211,7 @@
 							Не уступающие 3ds Max и Autocad
 						</small>
 						<div style="position: relative; height: 40rem;">
-							<img style="position: absolute; transform: translateX(-50%);" class="fragment fade-in-then-out" src="./images/sample-3ds-max.jpg" />
-							<img style="position: absolute; transform: translateX(-50%);" class="fragment fade-in-then-out" src="./images/sample-3ds-max-2.jpg" />
-							<img style="position: absolute; transform: translateX(-50%);" class="fragment fade-in-then-out" src="./images/sample-autocad.jpg" />
+							<img style="position: absolute; transform: translateX(-50%);" src="./images/sample-3ds-max.jpg" />
 						</div>
 					</section>
 
@@ -226,9 +220,7 @@
 							Не уступающие Photoshop и CorelDraw
 						</small>
 						<div style="position: relative; height: 40rem;">
-							<img style="position: absolute; transform: translateX(-50%);" class="fragment fade-in-then-out" src="./images/sample-photoshop.png" />
-							<img style="position: absolute; transform: translateX(-50%);" class="fragment fade-in-then-out" src="./images/sample-photoshop-2.jpg" />
-							<img style="position: absolute; transform: translateX(-50%);" class="fragment fade-in-then-out" src="./images/sample-coreldraw.png" />
+							<img style="position: absolute; transform: translateX(-50%);" src="./images/sample-photoshop.png" />
 						</div>
 					</section>
 
@@ -489,7 +481,7 @@
 							Пример слоя <b style="color: #F9322C">Controller</b> в React
 						</h4>
 
-						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+						<pre><code data-trim data-noescape class="language-ts" data-line-numbers="|3-4|6-12|"><script type="text/template">
 							class ToDoController {
 
 								public currentTodo: string = "";
@@ -543,7 +535,17 @@
 							1. Через классовый компонент
 						</h4>
 
-						<pre><code data-trim ata-noescape class="language-ts"><script type="text/template">
+						<pre><code data-trim data-noescape class="language-ts" data-line-numbers="0"><script type="text/template">
+							export const todoView = (ctrl: ToDo, props) => (
+								<div className="comment">
+									<button onClick={() => ctrl.handleAddTodo()}>
+										Кнопка
+									</button>
+								</div>
+							);
+						</script></code></pre>
+
+						<pre><code data-trim ata-noescape class="language-ts" data-line-numbers="|7-9|"><script type="text/template">
 							import {todoView} from "ToDo.view.tsx";
 
 							class ToDo extends React.Component {
@@ -556,15 +558,6 @@
 							}
 						</script></code></pre>
 
-						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
-							export const todoView = (ctrl: ToDo, props) => (
-								<div className="comment">
-									<button onClick={() => ctrl.handleAddTodo()}>
-										Кнопка
-									</button>
-								</div>
-							);
-						</script></code></pre>
 					</section>
 
 					<section>
@@ -572,7 +565,7 @@
 							2. Библиотека <a href="https://github.com/LabEG/reca" target="_blank">ReCA</a>
 						</h4>
 
-						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+						<pre><code data-trim data-noescape class="language-ts" data-line-numbers="|3|"><script type="text/template">
 							import {AutoStore} from "reca";
 
 							class ToDoStore extends AutoStore {
@@ -580,7 +573,7 @@
 							}
 						</script></code></pre>
 
-						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+						<pre><code data-trim data-noescape class="language-ts" data-line-numbers="|4|"><script type="text/template">
 							import {useStore} from "reca";
 
 							const TodoView = (props) => {
@@ -602,7 +595,7 @@
 							3. Библиотека MobX
 						</h4>
 
-						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+						<pre><code data-trim data-noescape class="language-ts" data-line-numbers="|5|"><script type="text/template">
 							class ToDoStore {
 								...
 							}
@@ -610,7 +603,7 @@
 							export const todoStore = new TodoStore();
 						</script></code></pre>
 
-						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+						<pre><code data-trim data-noescape class="language-ts" data-line-numbers="|3|11|"><script type="text/template">
 							import {todoStore} from "./ToDo.store.ts";
 
 							const Todo = observer(({todoStore}) => (
@@ -621,7 +614,7 @@
 								</div>
 							));
 
-							ReactDOM.render(<Todo todoStore={todoStore} />, document.body)
+							ReactDOM.render(<Todo todoStore={todoStore} />, body)
 						</script></code></pre>
 					</section>
 				</section>
@@ -754,15 +747,16 @@
 
 						<ul>
 							<li>
-								Независим от фреймворка
-							</li>
-							<li class="fragment">
+								<b>Независим от фреймворка</b>
+								<br/>
 								Можно переиспользовать между разными фреймворками в рамках одного приложения
 							</li>
+
+							<br/>
+
 							<li class="fragment">
-								Независим от платформы
-							</li>
-							<li class="fragment">
+								<b>Независим от платформы</b>
+								<br/>
 								Можно переиспользовать между разными платформами
 							</li>
 						</ul>
@@ -789,20 +783,19 @@
 						<pre><code data-trim ata-noescape class="language-ts"><script type="text/template">
 							import {reflection} from "first-di";
 
-							@reflection
 							export class ProfileService
 							{
 								public async getUserProfile(): Promise<UserProfile> {...}
 							}
 						</script></code></pre>
 
-						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+						<pre><code data-trim data-noescape class="language-ts" data-line-numbers="|4|6|"><script type="text/template">
 							import {reflection} from "first-di";
 							import {AutoStore} from "reca";
 
 							@reflection
 							class ToDoController extends AutoStore {
-								constructor (readonly profileService: ProfileService) {
+								constructor (readonly profileService: ProfileService){
 									super();
 								}
 								...
@@ -841,7 +834,7 @@
 							<a href="https://github.com/LabEG/reca" target="_blank">ReCA</a>
 						</h4>
 
-						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+						<pre><code data-trim data-noescape class="language-ts" data-line-numbers="|3-4|9|11|"><script type="text/template">
 							class ToDoStore<P> extends AutoStore<P> {
 								public constructor (
 									private readonly profileService: ProfileService,
@@ -850,7 +843,7 @@
 
 								public async fetchProfile(): Promise<void> {
 									try {
-										this.profile = await this.profileService.getProfile();
+										this.profile = await this.profileService.getProf();
 									} catch (error: unknown) {
 										this.loggerService.error("Error in ToDo", error);
 									}
@@ -953,7 +946,7 @@
 							Бизнес модель данных пользователя.
 						</small>
 
-						<pre><code data-trim data-noescape class="language-ts"><script type="text/template">
+						<pre><code data-trim data-noescape class="language-ts" data-line-numbers="|2-4|6-8|10-13|"><script type="text/template">
 							class UserProfile {
 								public firstName: string = '';
 								public familyName: string = '';
@@ -1211,17 +1204,17 @@
 
 				<section>
 					<section>
-						<h3>
-							Чистая архитектура
-						</h3>
-						<img style="height: 30rem" src="./images/ca/clean-architecture.jpg" />
-					</section>
-
-					<section>
 						<h4>
 							Архитектура для веба
 						</h4>
 						<img style="height: 30rem" src="./images/layers.png" />
+					</section>
+
+					<section>
+						<h3>
+							Чистая архитектура
+						</h3>
+						<img style="height: 30rem" src="./images/ca/clean-architecture.jpg" />
 					</section>
 
 					<section>
@@ -1382,9 +1375,6 @@
 					</section>
 
 					<section>
-						<h4>
-							Цитата
-						</h4>
 						<p>
 							Большие проекты делаются не большим количеством людей в одной команде,
 							а&nbsp;большим количеством маленьких команд.
