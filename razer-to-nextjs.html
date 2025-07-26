@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/white.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/github-dark-dimmed.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h3>
+						<span style="color: #F9322C">
+							Переезд с Razor на Next.js
+						</span>
+						<br />
+						<small>без остановки бизнес процессов</small>
+					</h3>
+					<br>
+					<p>
+						Евгений Лабутин
+					</p>
+					<small>
+						СМС Рассылки
+					</small>
+				</section>
+
+				<section>
+					<h3>
+						О проекте
+					</h3>
+					<br>
+					<p>
+					<ul style="font-size:0.8em; line-height:1.7; list-style:none; padding-left:0;">
+						<li class="fragment fade-in">✅ Валидация <b>прав оказания услуг</b> для брендов</li>
+						<li class="fragment fade-in">🔤 Валидация <b>имён отправителей</b> смс</li>
+						<li class="fragment fade-in">📝 Валидация <b>шаблонов</b> для смс рассылок</li>
+						<li class="fragment fade-in">💳 Выставление <b>счетов</b> на основании биллинга <b>SDCM</b></li>
+						<li class="fragment fade-in">📦 …и др.</li>
+					</ul>
+					</p>
+				</section>
+
+				<section>
+					<h3>
+						Из легаси в тренды
+					</h3>
+					<br>
+					<ul style="font-size:0.8em; line-height:1.6; list-style:none; padding-left:0;">
+						<li class="fragment fade-in">🦾 <b>.Net Core 2 / .Net Framework 4.5</b> → <b>.Net Core 9</b></li>
+						<li class="fragment fade-in">🚀 <b>Oracle</b> → <b>PostgreSQL</b></li>
+						<li class="fragment fade-in">⚡ <b>Razor</b> → <b>Next.js</b></li>
+						<li class="fragment fade-in">☁️ <b>Windows IIS</b> → <b>Linux Kubernetes</b></li>
+						<li class="fragment fade-in">📈 Внедрён <b>OpenTelemetry</b> (Мониторинг, Логи, Трейсы)</li>
+						<li class="fragment fade-in">📝 Добавлен <b>OpenApi и Swagger</b></li>
+						<li class="fragment fade-in">🔢 Добавлено <b>Версионирование API</b></li>
+						<li class="fragment fade-in">🔐 Локальная авторизация → <b>два SSO</b></li>
+					</ul>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
