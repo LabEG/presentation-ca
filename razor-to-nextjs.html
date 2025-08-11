@@ -1,0 +1,490 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Переезд с Razor на Next.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/white.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/github-dark-dimmed.css">
+
+		<style>
+			:root {
+				--accent: #F9322C;
+				--text: #343a40;
+				--muted: #6c757d;
+				--muted-2: #495057;
+				--divider: #e9ecef;
+			}
+
+			/* Minimal hero/title styling */
+			.hero { padding: 1.5em 1em; }
+			.hero-inner { max-width: 44em; margin: 0 auto; text-align: center; }
+			.hero-title { color: var(--text); font-size: 1.25em !important; margin: 0 0 0.3em 0; font-weight: 700; }
+			.hero-title .accent { color: var(--accent); }
+			.hero-subtitle { color: var(--muted); font-size: 0.95em; margin: 0.1em 0 1.0em 0; font-weight: 500; }
+			.divider { width: 62%; height: 0; border-top: 2px solid var(--divider); margin: 1.0em auto; }
+			.meta { list-style: none; padding: 0; margin: 0.6em 0 0; display: flex; gap: 1.2em; justify-content: center; color: var(--muted-2); font-size: 0.9em; }
+			.meta li { display: flex; align-items: center; gap: 0.45em; }
+			.meta .icon { color: var(--muted); font-size: 1.1em; line-height: 1; }
+
+			/* Section/base utilities */
+			.section-title { color: var(--muted-2); font-size: 1.15em; margin: 0 0 0.6em 0; font-weight: 600; text-align: center; }
+			.card { background: #f8f9fa; border-radius: 0.6em; border: 1px solid var(--divider); padding: 1em 1.2em; box-shadow: 0 0.05em 0.2em rgba(0,0,0,0.06); max-width: 44em; margin: 0.2em auto 0; }
+			.card--soft { border-left: 0.18em solid var(--muted); }
+			.list-clean { list-style: none; padding: 0; margin: 0; }
+			.list-tight li { margin: 0.35em 0; line-height: 1.5; color: var(--muted-2); font-size: 0.95em; }
+			.list-clean li b, .list-clean li strong { color: var(--text); }
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section class="hero">
+					<div class="hero-inner">
+						<h1 class="hero-title"><span class="accent">Переезд с Razor на Next.js</span></h1>
+						<p class="hero-subtitle">без остановки бизнес-процессов</p>
+						<div class="divider"></div>
+						<ul class="meta">
+							<li><span class="icon">👤</span> Евгений Лабутин</li>
+							<li><span class="icon">🏢</span> СМС Рассылки</li>
+						</ul>
+					</div>
+				</section>
+
+				<section>
+					<h3 class="section-title">О проекте</h3>
+					<div class="card card--soft" style="border-left-color:#6c757d;">
+						<ul class="list-clean list-tight" style="font-size:0.95em;">
+							<li class="fragment fade-in">✅ Заведение <b>договоров</b> для клиентов</li>
+							<li class="fragment fade-in">🔤 Валидация <b>имён отправителей</b> смс</li>
+							<li class="fragment fade-in">📝 Валидация <b>шаблонов</b> для смс рассылок</li>
+							<li class="fragment fade-in">📦 …и др.</li>
+						</ul>
+					</div>
+				</section>
+
+				<section>
+					<h3 class="section-title">Из легаси в тренды</h3>
+					<table style="font-size:0.7em; width:100%; border-collapse:collapse;">
+						<thead>
+							<tr>
+								<th style="border:1px solid #ddd; padding:8px; background:#f5f5f5; text-align:center; width:50%;">
+									<span style="color:#666;">📉 БЫЛО (Легаси)</span>
+								</th>
+								<th style="border:1px solid #ddd; padding:8px; background:#f5f5f5; text-align:center; width:50%;">
+									<span style="color:#F9322C;">🚀 СТАЛО (Тренды)</span>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="fragment fade-in" data-fragment-index="1">
+								<td style="border:1px solid #ddd; padding:8px; text-align:center;">� .Net Core 2 / .Net Framework 4.5</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>🦾 .Net Core 9</b></td>
+							</tr>
+							<tr class="fragment fade-in" data-fragment-index="2">
+								<td style="border:1px solid #ddd; padding:8px; text-align:center;">🏛️ Oracle</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>🐘 PostgreSQL</b></td>
+							</tr>
+							<tr class="fragment fade-in" data-fragment-index="3" id="razor-row">
+								<td style="border:1px solid #ddd; padding:8px; text-align:center;">🪒 Razor</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>⚡ Next.js</b></td>
+							</tr>
+							<tr class="fragment fade-in" data-fragment-index="4">
+								<td style="border:1px solid #ddd; padding:8px; text-align:center;">🏢 Windows IIS</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>☁️ Linux Kubernetes</b></td>
+							</tr>
+							<tr class="fragment fade-in" data-fragment-index="5">
+								<td style="border:1px solid #ddd; padding:8px; text-align:center;">🔇 Без мониторинга</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>📡 OpenTelemetry</b></td>
+							</tr>
+							<tr class="fragment fade-in" data-fragment-index="6">
+								<td style="border:1px solid #ddd; padding:8px; text-align:center;">📋 Без документации API</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>📚 OpenApi + Swagger</b></td>
+							</tr>
+							<tr class="fragment fade-in" data-fragment-index="7">
+								<td style="border:1px solid #ddd; padding:8px; text-align:center;">🏷️ Без версионирования</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>🔢 Версионирование API</b></td>
+							</tr>
+							<tr class="fragment fade-in" data-fragment-index="8">
+								<td style="border:1px solid #ddd; padding:8px; text-align:center;">� Локальная авторизация</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>🌐 Два SSO</b></td>
+							</tr>
+						</tbody>
+					</table>
+					<span class="fragment" data-fragment-index="10" id="highlight-trigger" style="position:absolute;left:-9999px;">Highlight Razor</span>
+				</section>
+
+				<section>
+					<h3 class="section-title">Куда мигрировать с легаси?</h3>
+					<div class="card" style="padding:0.9em 1.1em;">
+						<ul class="list-clean list-tight" style="font-size:0.95em;">
+							<li class="fragment fade-in">Куда мигрировать с легаси C#?</li>
+							<li class="fragment fade-in">Куда мигрировать с легаси Razor?</li>
+						</ul>
+					</div>
+				</section>
+
+				<section>
+					<section>
+						<h3>
+							Что такое C# в 2025 году?
+						</h3>
+					</section>
+
+					<section>
+						<h4 style="color:#495057; margin-bottom:1.0em; font-size:0.85em;">
+							🏆 Рейтинг производительности
+						</h4>
+						<p style="font-size:0.51em; color:#6c757d; margin-bottom:1.2em;">
+							Источник: <a href="https://www.techempower.com/benchmarks/#section=data-r23" target="_blank" style="color:#495057;">TechEmpower Benchmarks</a>
+						</p>
+
+						<div style="display:grid; grid-template-columns:1fr 1fr; gap:1.2em; font-size:0.595em;">
+							<div style="background:#f8f9fa; padding:1.2em; border-radius:0.6em; border-left:0.3em solid #6c757d;">
+								<h5 style="color:#495057; margin-bottom:0.9em; text-align:center; font-size:1.18em;">🥇 Лидеры</h5>
+								<ul style="list-style:none; padding:0; line-height:1.8;">
+									<li class="fragment fade-in" style="background:rgba(46,139,87,0.1); padding:0.5em; margin:0.3em 0; border-radius:0.3em;" data-fragment-index="1">
+										<span style="color:#2E8B57; font-weight:bold;">35 место</span> ASP.NET из всех
+									</li>
+									<li class="fragment fade-in" style="background:rgba(46,139,87,0.2); padding:0.5em; margin:0.3em 0; border-radius:0.3em;" data-fragment-index="2">
+										<span style="color:#2E8B57; font-weight:bold;">🏆 1 место</span> из популярных
+									</li>
+									<li class="fragment fade-in" style="background:rgba(255,215,0,0.1); padding:0.5em; margin:0.3em 0; border-radius:0.3em;" data-fragment-index="8">
+										<span style="color:#DAA520; font-weight:bold;">98 место</span> Fiber (Go)
+									</li>
+								</ul>
+							</div>
+
+							<div style="background:#f8f9fa; padding:1.2em; border-radius:0.6em; border-left:0.3em solid #868e96;">
+								<h5 style="color:#6c757d; margin-bottom:0.9em; text-align:center; font-size:1.18em;">📉 Отстающие</h5>
+								<ul style="list-style:none; padding:0; line-height:1.8;">
+									<li class="fragment fade-in" style="background:rgba(220,20,60,0.1); padding:0.5em; margin:0.3em 0; border-radius:0.3em;" data-fragment-index="3">
+										<span style="color:#DC143C; font-weight:bold;">179 место</span> Spring (Java)
+									</li>
+									<li class="fragment fade-in" style="background:rgba(220,20,60,0.1); padding:0.5em; margin:0.3em 0; border-radius:0.3em;" data-fragment-index="4">
+										<span style="color:#DC143C; font-weight:bold;">209 место</span> Echo (Go)
+									</li>
+									<li class="fragment fade-in" style="background:rgba(220,20,60,0.1); padding:0.5em; margin:0.3em 0; border-radius:0.3em;" data-fragment-index="5">
+										<span style="color:#DC143C; font-weight:bold;">230 место</span> Nest.js (Node)
+									</li>
+									<li class="fragment fade-in" style="background:rgba(220,20,60,0.15); padding:0.5em; margin:0.3em 0; border-radius:0.3em;" data-fragment-index="6">
+										<span style="color:#DC143C; font-weight:bold;">284 место</span> Gin (Go)
+									</li>
+									<li class="fragment fade-in" style="background:rgba(220,20,60,0.2); padding:0.5em; margin:0.3em 0; border-radius:0.3em;" data-fragment-index="7">
+										<span style="color:#DC143C; font-weight:bold;">424 место</span> Django (Python)
+									</li>
+								</ul>
+							</div>
+						</div>
+					</section>
+
+					<section>
+						<div style="text-align: center; margin-bottom: 2.5rem;">
+							<h4 style="color: #2c3e50; font-size: 2.4rem; margin-bottom: 2rem; font-weight: 500;">
+								🎮 > 50-70% мобильных игр написаны на C#
+							</h4>
+						</div>
+
+						<div style="display: flex; flex-direction: column; gap: 1.25rem; max-width: 50rem; margin: 0 auto;">
+							<div class="fragment fade-in" style="background: #f8f9fa; padding: 1.5rem; border-radius: 0.625rem; border-left: 0.25rem solid #6c757d; box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.08);">
+								<div style="display: flex; align-items: center; gap: 0.9375rem;">
+									<span style="font-size: 3.2rem; color: #6c757d;">📱</span>
+									<span style="color: #495057; font-size: 1.9rem; line-height: 1.4;">
+										Ключевой язык в разработке <strong style="color: #2c3e50;">высоконагруженных мобильных приложений</strong>
+									</span>
+								</div>
+							</div>
+
+							<div class="fragment fade-in" style="background: #f8f9fa; padding: 1.5rem; border-radius: 0.625rem; border-left: 0.25rem solid #868e96; box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.08);">
+								<div style="display: flex; align-items: center; gap: 0.9375rem;">
+									<span style="font-size: 3.2rem; color: #868e96;">🎯</span>
+									<span style="color: #495057; font-size: 1.9rem; line-height: 1.4;">
+										Основной язык в разработке <strong style="color: #2c3e50;">мобильных игр</strong> (в основном за счет Unity)
+									</span>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<section>
+						<h3 style="color: #495057; font-size: 1.4em; margin-bottom: 0.5em; text-align: center;">
+							Еще преимущества C#
+						</h3>
+
+						<div style="text-align: center; line-height: 2.2; font-size: 0.5em; color: #6c757d; max-width: 50em; margin: 0 auto; word-spacing: 0.3em;">
+							<span class="fragment fade-in" data-fragment-index="1" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.1); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Высокая производительность</span>
+							<span class="fragment fade-in" data-fragment-index="2" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.08); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Огромная экосистема</span>
+							<span class="fragment fade-in" data-fragment-index="3" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.12); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Большое активное сообщество</span>
+							<span class="fragment fade-in" data-fragment-index="4" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.09); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Кроссплатформенность</span>
+							<span class="fragment fade-in" data-fragment-index="5" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.11); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Простота изучения</span>
+							<span class="fragment fade-in" data-fragment-index="6" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.07); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Отличная документация</span>
+							<span class="fragment fade-in" data-fragment-index="8" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.1); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Поддержка Microsoft</span>
+							<span class="fragment fade-in" data-fragment-index="9" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.08); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Безопасность</span>
+							<span class="fragment fade-in" data-fragment-index="10" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.12); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Надёжность</span>
+							<span class="fragment fade-in" data-fragment-index="11" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.09); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Высокий спрос на рынке</span>
+							<span class="fragment fade-in" data-fragment-index="12" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.11); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Высокие зарплаты</span>
+							<span class="fragment fade-in" data-fragment-index="13" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.07); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Масштабируемость</span>
+							<span class="fragment fade-in" data-fragment-index="14" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.13); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Быстрая разработка</span>
+							<span class="fragment fade-in" data-fragment-index="15" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.1); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Универсальность</span>
+							<span class="fragment fade-in" data-fragment-index="16" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.08); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Простота поддержки</span>
+							<span class="fragment fade-in" data-fragment-index="17" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.12); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Отличная отладка</span>
+							<span class="fragment fade-in" data-fragment-index="18" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.09); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Стабильность языка</span>
+							<span class="fragment fade-in" data-fragment-index="19" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.11); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Богатая стандартная библиотека</span>
+							<span class="fragment fade-in" data-fragment-index="20" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.07); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Отличная интеграция</span>
+							<span class="fragment fade-in" data-fragment-index="21" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.13); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Веб-разработка</span>
+							<span class="fragment fade-in" data-fragment-index="22" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.1); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Мобильная разработка</span>
+							<span class="fragment fade-in" data-fragment-index="23" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.08); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Разработка игр</span>
+							<span class="fragment fade-in" data-fragment-index="24" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.12); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Десктопные приложения</span>
+							<span class="fragment fade-in" data-fragment-index="25" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.09); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Облачные технологии</span>
+							<span class="fragment fade-in" data-fragment-index="26" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.11); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Микросервисы</span>
+							<span class="fragment fade-in" data-fragment-index="27" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.07); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Машинное обучение</span>
+							<span class="fragment fade-in" data-fragment-index="28" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.13); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Интернет вещей</span>
+							<span class="fragment fade-in" data-fragment-index="29" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.1); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Легкий рефакторинг</span>
+							<span class="fragment fade-in" data-fragment-index="30" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.08); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Простота тестирования</span>
+							<span class="fragment fade-in" data-fragment-index="31" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.12); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Чистый синтаксис</span>
+							<span class="fragment fade-in" data-fragment-index="32" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.09); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Читаемый код</span>
+							<span class="fragment fade-in" data-fragment-index="33" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.11); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Автодополнение</span>
+							<span class="fragment fade-in" data-fragment-index="35" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.13); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Контроль версий</span>
+							<span class="fragment fade-in" data-fragment-index="36" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.1); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Командная разработка</span>
+							<span class="fragment fade-in" data-fragment-index="39" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.09); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Быстрое прототипирование</span>
+							<span class="fragment fade-in" data-fragment-index="40" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.11); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Корпоративные решения</span>
+							<span class="fragment fade-in" data-fragment-index="41" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.07); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Открытый исходный код</span>
+							<span class="fragment fade-in" data-fragment-index="42" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.13); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Регулярные обновления</span>
+							<span class="fragment fade-in" data-fragment-index="43" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.1); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Обратная совместимость</span>
+							<span class="fragment fade-in" data-fragment-index="44" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.08); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Низкие требования к ресурсам</span>
+							<span class="fragment fade-in" data-fragment-index="45" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.12); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Многопоточность</span>
+							<span class="fragment fade-in" data-fragment-index="47" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.11); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Быстрая компиляция</span>
+							<span class="fragment fade-in" data-fragment-index="49" style="display: inline-block; line-height: 1.3; background: rgba(108,117,125,0.13); padding: 0.2em 0.4em; border-radius: 0.2em; margin: 0.1em;">Перспективность</span>
+						</div>
+					</section>
+
+					<section>
+						<div style="text-align: center; padding: 1.5em 1em;">
+							<h3 style="color: #495057;
+									  font-size: 1.2em;
+									  margin-bottom: 1em;
+									  font-weight: 600;
+									  border-bottom: 0.1em solid #e9ecef;
+									  padding-bottom: 0.4em;
+									  display: inline-block;">
+								Вывод
+							</h3>
+
+							<div class="fragment fade-in" style="background: #f8f9fa;
+													   padding: 0.8em 1.2em;
+													   border-radius: 0.4em;
+													   border-left: 0.15em solid #6c757d;
+													   max-width: 28em;
+													   margin: 0 auto 1em auto;
+													   box-shadow: 0 0.05em 0.2em rgba(0,0,0,0.06);">
+								<p style="color: #343a40;
+										 font-size: 0.9em;
+										 line-height: 1.4;
+										 margin: 0;
+										 font-weight: 500;">
+									C# снова на коне
+								</p>
+							</div>
+
+							<div class="fragment fade-in" style="background: #f8f9fa;
+													   padding: 0.8em 1.2em;
+													   border-radius: 0.4em;
+													   border-left: 0.15em solid #6c757d;
+													   max-width: 28em;
+													   margin: 0 auto;
+													   box-shadow: 0 0.05em 0.2em rgba(0,0,0,0.06);">
+								<p style="color: #343a40;
+										 font-size: 0.9em;
+										 line-height: 1.4;
+										 margin: 0;
+										 font-weight: 500;">
+									Лучше старой версии C# может быть только <strong style="color: #495057;">новая версия C#</strong> =)
+								</p>
+							</div>
+						</div>
+					</section>
+				</section>
+
+				<section>
+					<section style="font-size:0.45em; line-height:1.25;">
+						<h3 style="margin-bottom:0.6em; font-size:2.0em;">
+							Кандидаты на новый стек фронтенда
+						</h3>
+						<div style="display:grid; grid-template-columns:1fr 1fr; gap:1.1em;">
+							<div class="fragment fade-in" style="background:#f8f9fa; border-left:0.28em solid #000; padding:0.75em 0.7em 0.75em 0.75em; border-radius:0.5em; box-shadow:0 0.1em 0.3em rgba(0,0,0,0.06); display:flex; flex-direction:column;">
+								<h4 style="margin:0 0 0.4em 0; font-size:1.85em; color:#111; font-weight:600; display:flex; align-items:center; gap:0.3em;">
+									<span style="font-size:0.95em;">⚡</span> Next.js
+								</h4>
+								<ul style="list-style:none; padding:0; margin:0 0 0.5em 0; line-height:1.35; color:#343a40; font-size:1.2em;">
+									<li style="margin-bottom:0.25em;">Лидер современной фронтенд‑разработки</li>
+									<li style="margin-bottom:0.25em;">Быстрый запуск и короткий time‑to‑market</li>
+									<li style="margin-bottom:0.25em;">Готовая инфраструктура: рендеринг, сборка, оптимизации</li>
+									<li style="margin-bottom:0.25em;">Высокая производительность из коробки</li>
+									<li style="margin-bottom:0.25em;">Широкое сообщество и экспертиза рынка</li>
+									<li style="margin-bottom:0;">Прозрачный путь масштабирования продукта</li>
+								</ul>
+							</div>
+
+							<div class="fragment fade-in" style="background:#f8f9fa; border-left:0.28em solid #6c757d; padding:0.75em 0.7em 0.75em 0.75em; border-radius:0.5em; box-shadow:0 0.1em 0.3em rgba(0,0,0,0.06); display:flex; flex-direction:column;">
+								<h4 style="margin:0 0 0.4em 0; font-size:1.85em; color:#343a40; font-weight:600; display:flex; align-items:center; gap:0.3em;">
+									<span style="font-size:0.9em;">🧩</span> C# Blazor
+								</h4>
+								<ul style="list-style:none; padding:0; margin:0 0 0.5em 0; line-height:1.35; color:#343a40; font-size:1.2em;">
+									<li style="margin-bottom:0.25em;">Новый .NET фреймворк на WebAssembly и сервере</li>
+									<li style="margin-bottom:0.25em;">Единый язык C# для фронта и бэка</li>
+									<li style="margin-bottom:0.25em;">Рост продуктивности текущей .NET команды</li>
+									<li style="margin-bottom:0.25em;">Повторное использование библиотек и логики</li>
+									<li style="margin-bottom:0.25em;">Интеграция с ASP.NET, Azure, Microsoft</li>
+									<li style="margin-bottom:0;">Долгосрочная поддержка и стратегия</li>
+								</ul>
+							</div>
+						</div>
+					</section>
+
+					<section>
+						<h4>
+							Сравнение производительности
+						</h4>
+						<img style="width: 16em" src="./images/razor-to-react/blazor-performance.png" alt="Сравнение производительности Blazor" />
+					</section>
+
+					<section style="font-size:0.75em; padding:1em;">
+						<h3 style="color:#495057; font-size:1.6em; margin-bottom:0.8em; text-align:center; font-weight:600;">
+							🧩 Проблемы Blazor
+						</h3>
+						<div style="background:#f8f9fa; padding:1.5em; border-radius:0.6em; border-left:0.3em solid #dc3545; box-shadow:0 0.1em 0.3em rgba(0,0,0,0.08); max-width:40em; margin:0 auto;">
+							<ul style="list-style:none; padding:0; margin:0; line-height:1.5;">
+								<li class="fragment fade-in" data-fragment-index="1" style="display:flex; align-items:flex-start; gap:0.6em; margin-bottom:0.8em; padding:0.6em; background:rgba(220,53,69,0.04); border-radius:0.4em; border-left:0.15em solid #dc3545;">
+									<span style="font-size:1.3em; color:#dc3545; margin-top:0.05em; flex-shrink:0;">🚩</span>
+									<span style="color:#495057; font-size:1.1em; line-height:1.3; font-weight:500;">
+										<strong style="color:#dc3545;">WebAssembly еще не готов</strong> к полноценным веб‑фреймворкам
+									</span>
+								</li>
+								<li class="fragment fade-in" data-fragment-index="2" style="display:flex; align-items:flex-start; gap:0.6em; margin-bottom:0.8em; padding:0.6em; background:rgba(220,53,69,0.04); border-radius:0.4em; border-left:0.15em solid #dc3545;">
+									<span style="font-size:1.3em; color:#dc3545; margin-top:0.05em; flex-shrink:0;">🚩</span>
+									<span style="color:#495057; font-size:1.1em; line-height:1.3; font-weight:500;">
+										Требует <strong style="color:#dc3545;">переписывания JavaScript библиотек</strong> на C#
+									</span>
+								</li>
+								<li class="fragment fade-in" data-fragment-index="3" style="display:flex; align-items:flex-start; gap:0.6em; margin-bottom:0; padding:0.6em; background:rgba(220,53,69,0.04); border-radius:0.4em; border-left:0.15em solid #dc3545;">
+									<span style="font-size:1.3em; color:#dc3545; margin-top:0.05em; flex-shrink:0;">🚩</span>
+									<span style="color:#495057; font-size:1.1em; line-height:1.3; font-weight:500;">
+										<strong style="color:#dc3545;">Нехватка экспертизы</strong> на рынке фронтенд‑разработки
+									</span>
+								</li>
+							</ul>
+						</div>
+					</section>
+
+					<section>
+						<div style="text-align: center;">
+							<h3 style="color: #495057; font-size: 1.5em; margin-bottom: 0.8em; font-weight: 600;">
+								🏆 Победитель
+							</h3>
+
+							<div class="fragment fade-in" style="margin-bottom: 1em;">
+								<h2 style="font-size: 2.2em; margin: 0; font-weight: 700; color: #495057;">
+									⚡ Next.js
+								</h2>
+							</div>
+
+							<div class="fragment fade-in" style="display: flex; justify-content: center; gap: 1.5em; flex-wrap: wrap; margin: 1em 0;">
+								<div style="text-align: center; min-width: 4em;">
+									<div style="font-size: 1.5em; margin-bottom: 0.2em; color: #6c757d;">🚀</div>
+									<div style="font-size: 0.75em; color: #6c757d; font-weight: 500;">Производительность</div>
+								</div>
+
+								<div style="text-align: center; min-width: 4em;">
+									<div style="font-size: 1.5em; margin-bottom: 0.2em; color: #6c757d;">👥</div>
+									<div style="font-size: 0.75em; color: #6c757d; font-weight: 500;">Сообщество</div>
+								</div>
+
+								<div style="text-align: center; min-width: 4em;">
+									<div style="font-size: 1.5em; margin-bottom: 0.2em; color: #6c757d;">📈</div>
+									<div style="font-size: 0.75em; color: #6c757d; font-weight: 500;">Перспективы</div>
+								</div>
+							</div>
+
+							<div class="fragment fade-in" style="margin-top: 1.2em; border-top: 2px solid #e9ecef; padding-top: 1em;">
+								<p style="margin: 0; font-size: 0.9em; color: #495057; font-weight: 500;">
+									🎯 Лучший выбор для современной фронтенд-разработки
+								</p>
+							</div>
+						</div>
+					</section>
+
+				</section>
+
+				<section style="padding: 1.0em 1em;">
+					<div style="max-width: 42em; margin: 0 auto; text-align: center;">
+						<h3 class="section-title">Вопрос → Ответ</h3>
+						<div class="fragment fade-in card" style="display:flex; align-items:flex-start; gap:0.8em; margin-bottom:0.8em;">
+							<div style="font-size:1.2em; color:#6c757d; line-height:1;">❓</div>
+							<div style="text-align:left; color:#343a40; font-size:1.0em; line-height:1.4;">
+								Как с C# Razor перейти на Next.js?
+							</div>
+						</div>
+						<div class="fragment fade-in" style="border-top:2px dashed var(--divider); margin:0.8em auto; width:58%;"></div>
+						<div class="fragment fade-in card" style="display:flex; align-items:flex-start; gap:0.8em; border-left:0.18em solid #2E8B57;">
+							<div style="font-size:1.2em; color:#2E8B57; line-height:1;">✅</div>
+							<div style="text-align:left; color:#495057; font-size:1.0em; line-height:1.4; font-weight:600;">
+								Микрофронтенды
+							</div>
+						</div>
+					</div>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<style>
+			.highlight-current-red.current-fragment #razor-row {
+				background: #ffeb3b !important;
+				box-shadow: 0 0 10px rgba(255, 235, 59, 0.8);
+			}
+			.highlight-current-red.current-fragment #razor-row td {
+				background: #ffeb3b !important;
+			}
+		</style>
+		<script>
+			Reveal.addEventListener('fragmentshown', function(event) {
+				if(event.fragment.id === 'highlight-trigger') {
+					document.getElementById('razor-row').style.background = '#ffeb3b';
+					document.getElementById('razor-row').style.boxShadow = '0 0 10px rgba(255, 235, 59, 0.8)';
+					const cells = document.querySelectorAll('#razor-row td');
+					cells.forEach(cell => cell.style.background = '#ffeb3b');
+				}
+			});
+			Reveal.addEventListener('fragmenthidden', function(event) {
+				if(event.fragment.id === 'highlight-trigger') {
+					document.getElementById('razor-row').style.background = '';
+					document.getElementById('razor-row').style.boxShadow = '';
+					const cells = document.querySelectorAll('#razor-row td');
+					cells.forEach(cell => cell.style.background = '');
+					document.querySelector('#razor-row td:last-child').style.background = '#e8f5e8';
+				}
+			});
+		</script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
