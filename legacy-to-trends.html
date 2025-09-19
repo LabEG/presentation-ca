@@ -912,13 +912,102 @@ context.Namings
 						</h3>
 					</section>
 
-					<section>
-						<h3>
-							Концепция
-						</h3>
-						<p>
-							На базе ОРМ написан свой мигратов
-						</p>
+					<section class="ef-migration-concept-slide">
+						<div class="migration-concept-content">
+							<div class="concept-description">
+								<div class="description-header">
+									<span class="description-icon">💡</span>
+									<h4>Подход к миграции</h4>
+								</div>
+								<p class="description-text">
+									На базе ОРМ написан свой мигратор для переноса больших объёмов данных между контекстами
+								</p>
+							</div>
+
+							<div class="code-example-block">
+								<div class="code-container">
+									<pre class="migration-code"><code class="language-csharp">// Миграция данных между контекстами
+using var sourceContext = new SourceDbContext();
+using var targetContext = new TargetDbContext();
+
+var entities = await sourceContext.Users
+	.Take(1000)
+	.AsNoTracking()
+	.ToListAsync();
+
+await targetContext.Users.AddRangeAsync(entities);
+await targetContext.SaveChangesAsync();
+</code></pre>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<section class="database-migration-results-slide">
+						<div class="results-header">
+							<h3 class="results-title">Результаты миграции</h3>
+							<div class="migration-path">
+								<span class="db-badge oracle">🏛️ Oracle</span>
+								<span class="arrow">→</span>
+								<span class="db-badge postgresql">🐘 PostgreSQL</span>
+							</div>
+						</div>
+
+						<div class="results-content">
+							<div class="performance-metrics">
+								<div class="performance-header">
+									<span class="performance-icon">⚡</span>
+									<h4>Производительность</h4>
+								</div>
+								<div class="metrics-grid">
+									<div class="metric-item">
+										<div class="metric-value">10x</div>
+										<div class="metric-label">SQL операции</div>
+									</div>
+									<div class="metric-item">
+										<div class="metric-value">4x</div>
+										<div class="metric-label">Приложение</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="benefits-section">
+								<div class="benefits-header">
+									<span class="benefits-icon">🎯</span>
+									<h4>Преимущества PostgreSQL</h4>
+								</div>
+								<div class="benefits-grid">
+									<div class="benefit-item">
+										<span class="benefit-icon">🚀</span>
+										<div class="benefit-content">
+											<div class="benefit-title">Высокая производительность</div>
+											<div class="benefit-desc">Оптимизированные запросы и индексы</div>
+										</div>
+									</div>
+									<div class="benefit-item">
+										<span class="benefit-icon">🌐</span>
+										<div class="benefit-content">
+											<div class="benefit-title">Open Source</div>
+											<div class="benefit-desc">Активное сообщество разработчиков</div>
+										</div>
+									</div>
+									<div class="benefit-item">
+										<span class="benefit-icon">🔒</span>
+										<div class="benefit-content">
+											<div class="benefit-title">Надёжность</div>
+											<div class="benefit-desc">ACID транзакции и репликация</div>
+										</div>
+									</div>
+									<div class="benefit-item">
+										<span class="benefit-icon">📊</span>
+										<div class="benefit-content">
+											<div class="benefit-title">Современные типы данных</div>
+											<div class="benefit-desc">JSON, XML, массивы, диапазоны</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</section>
 				</section>
 
@@ -1466,23 +1555,23 @@ context.Namings
 			}
 
 			.npgsql-badge {
-				background: linear-gradient(135deg, #dbeafe, #bfdbfe);
-				color: #1e40af;
+				background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+				color: #475569;
 				padding: 0.4em 0.8em;
 				border-radius: 12px;
 				font-weight: 700;
 				font-size: 0.9em;
-				border: 1px solid #3b82f6;
+				border: 1px solid #94a3b8;
 			}
 
 			.warning-badge {
-				background: linear-gradient(135deg, #fef3c7, #fde68a);
-				color: #92400e;
+				background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+				color: #64748b;
 				padding: 0.4em 0.8em;
 				border-radius: 12px;
 				font-weight: 700;
 				font-size: 0.9em;
-				border: 1px solid #f59e0b;
+				border: 1px solid #94a3b8;
 			}
 
 			.breaking-change-container {
@@ -1561,8 +1650,8 @@ context.Namings
 			}
 
 			.impact-explanation {
-				background: linear-gradient(135deg, #fef2f2, #fee2e2);
-				border: 2px solid #fca5a5;
+				background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+				border: 2px solid #cbd5e1;
 				border-radius: 12px;
 				padding: 1.2em;
 			}
@@ -1675,23 +1764,23 @@ context.Namings
 			}
 
 			.ef-badge {
-				background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
-				color: #3730a3;
+				background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+				color: #475569;
 				padding: 0.4em 0.8em;
 				border-radius: 12px;
 				font-weight: 700;
 				font-size: 0.9em;
-				border: 1px solid #6366f1;
+				border: 1px solid #94a3b8;
 			}
 
 			.minor-change-badge {
-				background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
-				color: #0c4a6e;
+				background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+				color: #64748b;
 				padding: 0.4em 0.8em;
 				border-radius: 12px;
 				font-weight: 700;
 				font-size: 0.9em;
-				border: 1px solid #0ea5e9;
+				border: 1px solid #94a3b8;
 			}
 
 			.method-rename-container {
@@ -1758,7 +1847,7 @@ context.Namings
 			}
 
 			.method-label.new {
-				color: #059669;
+				color: #475569;
 			}
 
 			.method-name {
@@ -1774,15 +1863,15 @@ context.Namings
 			}
 
 			.method-name.old {
-				color: #dc2626;
-				border-color: #fca5a5;
-				background: linear-gradient(135deg, #fef2f2, #fee2e2);
+				color: #64748b;
+				border-color: #94a3b8;
+				background: linear-gradient(135deg, #f8fafc, #e2e8f0);
 			}
 
 			.method-name.new {
-				color: #059669;
-				border-color: #86efac;
-				background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+				color: #475569;
+				border-color: #94a3b8;
+				background: linear-gradient(135deg, #f8fafc, #f1f5f9);
 			}
 
 			.arrow-transform {
@@ -1858,23 +1947,23 @@ context.Namings
 			}
 
 			.openxml-badge {
-				background: linear-gradient(135deg, #ecfdf5, #d1fae5);
-				color: #065f46;
+				background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+				color: #475569;
 				padding: 0.4em 0.8em;
 				border-radius: 12px;
 				font-weight: 700;
 				font-size: 0.9em;
-				border: 1px solid #10b981;
+				border: 1px solid #94a3b8;
 			}
 
 			.issue-badge {
-				background: linear-gradient(135deg, #fef3c7, #fde68a);
-				color: #92400e;
+				background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+				color: #64748b;
 				padding: 0.4em 0.8em;
 				border-radius: 12px;
 				font-weight: 700;
 				font-size: 0.9em;
-				border: 1px solid #f59e0b;
+				border: 1px solid #94a3b8;
 			}
 
 			.openxml-issue-container {
@@ -2127,23 +2216,23 @@ context.Namings
 			}
 
 			.rabbitmq-badge {
-				background: linear-gradient(135deg, #fef3c7, #fde68a);
-				color: #92400e;
+				background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+				color: #475569;
 				padding: 0.4em 0.8em;
 				border-radius: 12px;
 				font-weight: 700;
 				font-size: 0.9em;
-				border: 1px solid #f59e0b;
+				border: 1px solid #94a3b8;
 			}
 
 			.async-badge {
-				background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
-				color: #3730a3;
+				background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+				color: #64748b;
 				padding: 0.4em 0.8em;
 				border-radius: 12px;
 				font-weight: 700;
 				font-size: 0.9em;
-				border: 1px solid #6366f1;
+				border: 1px solid #94a3b8;
 			}
 
 			.rabbitmq-migration-container {
@@ -2238,7 +2327,7 @@ context.Namings
 			}
 
 			.method-label.sync {
-				color: #dc2626;
+				color: #64748b;
 			}
 
 			.method-label.async {
@@ -2253,13 +2342,13 @@ context.Namings
 			}
 
 			.code-block.sync {
-				background: linear-gradient(135deg, #fef2f2, #fee2e2);
-				border: 2px solid #fca5a5;
+				background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+				border: 2px solid #94a3b8;
 			}
 
 			.code-block.async {
-				background: linear-gradient(135deg, #f0fdf4, #dcfce7);
-				border: 2px solid #86efac;
+				background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+				border: 2px solid #cbd5e1;
 			}
 
 			.code-line {
@@ -2269,11 +2358,11 @@ context.Namings
 			}
 
 			.code-block.sync .code-line {
-				color: #7f1d1d;
+				color: #64748b;
 			}
 
 			.code-block.async .code-line {
-				color: #14532d;
+				color: #475569;
 			}
 
 			.arrow-async {
@@ -2384,7 +2473,370 @@ context.Namings
 				font-size: 0.9em;
 			}
 
-			/* Result slide styles */
+		/* Database Migration Results Slide */
+		.database-migration-results-slide {
+			background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+			padding: 0.25rem;
+			color: #475569;
+			font-family: 'Arial', sans-serif;
+		}
+
+		.results-header {
+			text-align: center;
+			margin-bottom: 0.25rem;
+		}
+
+		.results-title {
+			font-size: 1.2em;
+			font-weight: 700;
+			color: #475569;
+			margin-bottom: 0.25rem;
+			text-shadow: 0 0.125rem 0.25rem rgba(71, 85, 105, 0.1);
+		}
+
+		.migration-path {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 0.5rem;
+			margin-bottom: 0.25rem;
+		}
+
+		.db-badge {
+			padding: 0.125rem 0.375rem;
+			border-radius: 1rem;
+			font-size: 0.5em;
+			font-weight: 600;
+			color: white;
+			box-shadow: 0 0.125rem 0.25rem rgba(71, 85, 105, 0.2);
+		}
+
+		.db-badge.oracle {
+			background: linear-gradient(135deg, #dc2626, #b91c1c);
+		}
+
+		.db-badge.postgresql {
+			background: linear-gradient(135deg, #0369a1, #075985);
+		}
+
+		.arrow {
+			font-size: 1em;
+			color: #64748b;
+			font-weight: bold;
+		}
+
+		.results-content {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 0.5rem;
+			max-width: 75rem;
+			margin: 0 auto;
+		}
+
+		.performance-metrics {
+			background: white;
+			padding: 0.375rem;
+			border-radius: 0.5rem;
+			box-shadow: 0 0.125rem 0.5rem rgba(71, 85, 105, 0.1);
+			border-left: 0.25rem solid #10b981;
+		}
+
+		.performance-header {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 0.25rem;
+			margin-bottom: 0.25rem;
+		}
+
+		.performance-icon {
+			font-size: 0.7em;
+		}
+
+		.performance-header h4 {
+			color: #475569;
+			font-size: 0.6em;
+			font-weight: 600;
+			margin: 0;
+		}
+
+		.metrics-grid {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 0.25rem;
+		}
+
+		.metric-item {
+			text-align: center;
+			padding: 0.25rem;
+			background: #f0fdf4;
+			border-radius: 0.375rem;
+			border: 0.0625rem solid #bbf7d0;
+		}
+
+		.metric-value {
+			font-size: 1em;
+			font-weight: 700;
+			color: #16a34a;
+			margin-bottom: 0.125rem;
+		}
+
+		.metric-label {
+			font-size: 0.45em;
+			color: #64748b;
+			font-weight: 500;
+		}
+
+		.benefits-section {
+			background: white;
+			padding: 0.375rem;
+			border-radius: 0.5rem;
+			box-shadow: 0 0.125rem 0.5rem rgba(71, 85, 105, 0.1);
+			border-left: 0.25rem solid #3b82f6;
+		}
+
+		.benefits-header {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 0.25rem;
+			margin-bottom: 0.25rem;
+		}
+
+		.benefits-icon {
+			font-size: 0.7em;
+		}
+
+		.benefits-header h4 {
+			color: #475569;
+			font-size: 0.6em;
+			font-weight: 600;
+			margin: 0;
+		}
+
+		.benefits-grid {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 0.125rem;
+		}
+
+		.benefit-item {
+			display: flex;
+			align-items: flex-start;
+			gap: 0.125rem;
+			padding: 0.1875rem;
+			background: #f8fafc;
+			border-radius: 0.25rem;
+			border: 0.0625rem solid #e2e8f0;
+		}
+
+		.benefit-icon {
+			font-size: 0.5em;
+			margin-top: 0.03125rem;
+		}
+
+		.benefit-content {
+			flex: 1;
+		}
+
+		.benefit-title {
+			font-size: 0.4em;
+			font-weight: 600;
+			color: #475569;
+			margin-bottom: 0.03125rem;
+		}
+
+		.benefit-desc {
+			font-size: 0.3em;
+			color: #64748b;
+			line-height: 1.2;
+		}
+
+			/* EF Migration Concept Slide */
+		.ef-migration-concept-slide {
+			background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+			padding: 0.5rem;
+			color: #475569;
+			font-family: 'Arial', sans-serif;
+		}
+
+		.concept-header {
+			text-align: center;
+			margin-bottom: 0.9375rem;
+		}
+
+		.concept-title {
+			font-size: 1.4em;
+			font-weight: 700;
+			color: #475569;
+			margin-bottom: 0.5rem;
+			text-shadow: 0 0.125rem 0.25rem rgba(71, 85, 105, 0.1);
+		}
+
+		.concept-subtitle {
+			display: flex;
+			justify-content: center;
+			gap: 0.625rem;
+			margin-top: 0.5rem;
+		}
+
+		.ef-core-badge, .migration-badge {
+			padding: 0.25rem 0.5rem;
+			border-radius: 1.25rem;
+			font-size: 0.5em;
+			font-weight: 600;
+			color: white;
+			box-shadow: 0 0.1875rem 0.375rem rgba(71, 85, 105, 0.2);
+		}
+
+		.ef-core-badge {
+			background: linear-gradient(135deg, #64748b, #475569);
+		}
+
+		.migration-badge {
+			background: linear-gradient(135deg, #94a3b8, #64748b);
+		}
+
+		.migration-concept-content {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 0.5rem;
+			max-width: 75rem;
+			margin: 0 auto;
+		}
+
+		.concept-description {
+			background: white;
+			padding: 0.5rem;
+			border-radius: 0.75rem;
+			box-shadow: 0 0.25rem 0.75rem rgba(71, 85, 105, 0.1);
+			border-left: 0.25rem solid #64748b;
+		}
+
+		.description-header {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 0.5rem;
+			margin-bottom: 0.5rem;
+		}
+
+		.description-icon {
+			font-size: 0.9em;
+		}
+
+		.description-header h4 {
+			color: #475569;
+			font-size: 0.7em;
+			font-weight: 600;
+			margin: 0;
+		}
+
+		.description-text {
+			font-size: 0.55em;
+			line-height: 1.6;
+			color: #64748b;
+			margin: 0;
+			padding: 0 20%;
+			text-align: center;
+		}
+
+		.code-example-block {
+			background: white;
+			padding: 0.5rem;
+			border-radius: 0.75rem;
+			box-shadow: 0 0.25rem 0.75rem rgba(71, 85, 105, 0.1);
+			border-left: 0.25rem solid #94a3b8;
+		}
+
+		.code-header {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+			margin-bottom: 0.625rem;
+		}
+
+		.code-icon {
+			font-size: 0.9em;
+		}
+
+		.code-header h4 {
+			color: #475569;
+			font-size: 0.7em;
+			font-weight: 600;
+			margin: 0;
+		}
+
+		.code-container {
+			background: #f8fafc;
+			border-radius: 0.5rem;
+			padding: 0.5rem;
+			border: 0.0625rem solid #e2e8f0;
+			overflow-x: auto;
+		}
+
+		.migration-code {
+			margin: 0;
+			font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+			font-size: 0.45em;
+			line-height: 1.5;
+			color: #e2e8f0;
+		}
+
+		.migration-code code {
+			color: #e2e8f0;
+		}
+
+		.performance-tips {
+			background: white;
+			padding: 0.75rem;
+			border-radius: 0.75rem;
+			box-shadow: 0 0.25rem 0.75rem rgba(71, 85, 105, 0.1);
+			border-left: 0.25rem solid #64748b;
+		}
+
+		.tips-header {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+			margin-bottom: 0.625rem;
+		}
+
+		.tips-icon {
+			font-size: 0.9em;
+		}
+
+		.tips-header h4 {
+			color: #475569;
+			font-size: 0.7em;
+			font-weight: 600;
+			margin: 0;
+		}
+
+		.tips-list {
+			display: grid;
+			gap: 12px;
+		}
+
+		.tip-item {
+			display: flex;
+			align-items: center;
+			gap: 0.75rem;
+			padding: 0.625rem 0;
+		}
+
+		.tip-bullet {
+			color: #64748b;
+			font-weight: bold;
+			font-size: 0.6em;
+		}
+
+		.tip-text {
+			color: #64748b;
+			font-size: 0.5em;
+			line-height: 1.5;
+		}
+
 			.result-slide {
 				padding: 1em !important;
 				font-size: 0.42em;
@@ -2399,7 +2851,7 @@ context.Namings
 			.result-title {
 				font-size: 1.8em !important;
 				margin: 0 0 0.5em 0 !important;
-				color: #15803d;
+				color: #374151;
 				font-weight: 700;
 			}
 
@@ -2409,13 +2861,13 @@ context.Namings
 			}
 
 			.success-badge {
-				background: linear-gradient(135deg, #dcfce7, #bbf7d0);
-				color: #166534;
+				background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+				color: #475569;
 				padding: 0.5em 1em;
 				border-radius: 12px;
 				font-weight: 700;
 				font-size: 0.9em;
-				border: 2px solid #22c55e;
+				border: 2px solid #94a3b8;
 			}
 
 			.result-content {
@@ -2440,18 +2892,18 @@ context.Namings
 			.achievement-icon {
 				font-size: 3em;
 				line-height: 1;
-				color: #059669;
+				color: #475569;
 			}
 
 			.achievement-text h4 {
 				font-size: 1.4em !important;
 				margin: 0 0 0.8em 0 !important;
-				color: #065f46;
+				color: #374151;
 				font-weight: 700;
 			}
 
 			.achievement-text p {
-				color: #047857 !important;
+				color: #64748b !important;
 				font-size: 1.1em;
 				line-height: 1.5;
 				margin: 0 !important;
@@ -2465,8 +2917,8 @@ context.Namings
 			}
 
 			.comparison-highlight {
-				background: linear-gradient(135deg, #fef3c7, #fde68a);
-				border: 2px solid #f59e0b;
+				background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+				border: 2px solid #cbd5e1;
 				border-radius: 12px;
 				padding: 1.5em;
 				display: flex;
@@ -2477,29 +2929,29 @@ context.Namings
 			.comparison-icon {
 				font-size: 2.5em;
 				line-height: 1;
-				color: #92400e;
+				color: #64748b;
 			}
 
 			.comparison-content h4 {
 				font-size: 1.3em !important;
 				margin: 0 0 0.5em 0 !important;
-				color: #92400e;
+				color: #475569;
 				font-weight: 700;
 			}
 
 			.comparison-text {
-				color: #92400e !important;
+				color: #64748b !important;
 				font-size: 1.1em;
 				margin: 0 !important;
 				font-weight: 600;
 			}
 
 			.highlight-cost {
-				background: rgba(251, 146, 60, 0.3);
+				background: rgba(148, 163, 184, 0.2);
 				padding: 0.2em 0.5em;
 				border-radius: 6px;
 				font-weight: 800;
-				color: #7c2d12;
+				color: #475569;
 			}
 
 			.benefits-summary {
@@ -2572,20 +3024,20 @@ context.Namings
 			}
 
 			.conclusion-badge {
-				background: linear-gradient(135deg, #fef3c7, #fde68a);
-				border: 3px solid #f59e0b;
+				background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+				border: 3px solid #94a3b8;
 				border-radius: 25px;
 				padding: 1em 2em;
 				display: flex;
 				align-items: center;
 				gap: 0.8em;
-				box-shadow: 0 6px 25px rgba(245, 158, 11, 0.3);
+				box-shadow: 0 6px 25px rgba(148, 163, 184, 0.3);
 				animation: glow 3s ease-in-out infinite alternate;
 			}
 
 			@keyframes glow {
-				from { box-shadow: 0 6px 25px rgba(245, 158, 11, 0.3); }
-				to { box-shadow: 0 8px 35px rgba(245, 158, 11, 0.5); }
+				from { box-shadow: 0 6px 25px rgba(148, 163, 184, 0.3); }
+				to { box-shadow: 0 8px 35px rgba(148, 163, 184, 0.5); }
 			}
 
 			.conclusion-icon {
@@ -2594,7 +3046,7 @@ context.Namings
 			}
 
 			.conclusion-text {
-				color: #92400e;
+				color: #475569;
 				font-weight: 800;
 				font-size: 1em;
 				letter-spacing: 0.02em;
