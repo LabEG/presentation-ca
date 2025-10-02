@@ -16,21 +16,28 @@
 		<style>
 			:root {
 				--accent: #F9322C;
-				--text: #343a40;
-				--muted: #6c757d;
-				--muted-2: #495057;
-				--divider: #e9ecef;
+				--text: #334155;
+				--muted: #64748b;
+				--muted-2: #475569;
+				--divider: #e2e8f0;
+				--bg-soft: #f8fafc;
+				--shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+				--shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+				--shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.08);
+				--radius-sm: 8px;
+				--radius-md: 12px;
+				--radius-lg: 16px;
 			}
 
 			/* Header slide card styling */
 			.header-card {
-				background: rgba(255, 255, 255, 0.9);
-				border-radius: 16px;
+				background: rgba(255, 255, 255, 0.95);
+				border-radius: var(--radius-lg);
 				padding: 50px 40px;
-				box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+				box-shadow: var(--shadow-lg);
 				max-width: 800px;
 				margin: 0 auto;
-				border: 1px solid rgba(226, 232, 240, 0.8);
+				border: 1px solid rgba(226, 232, 240, 0.6);
 			}
 
 			.header-content {
@@ -49,7 +56,7 @@
 				align-items: center;
 				justify-content: center;
 				margin-right: 20px;
-				box-shadow: 0 4px 16px rgba(100, 116, 139, 0.2);
+				box-shadow: var(--shadow-md);
 			}
 
 			.header-icon-badge span {
@@ -59,7 +66,7 @@
 
 			.header-title {
 				margin: 0;
-				color: #334155;
+				color: var(--text);
 				font-weight: 600;
 				font-size: 1.8em;
 				text-align: center;
@@ -73,7 +80,7 @@
 			.header-divider {
 				height: 3px;
 				background: linear-gradient(90deg, #64748b, #94a3b8);
-				border-radius: 2px;
+				border-radius: var(--radius-sm);
 				margin: 0 auto;
 				width: 180px;
 			}
@@ -83,24 +90,38 @@
 			}
 
 			/* Minimal hero/title styling */
-			.hero { padding: 1.5em 1em; }
-			.hero-inner { max-width: 44em; margin: 0 auto; text-align: center; }
-			.hero-title { color: var(--text); font-size: 1.5em !important; margin: 0 0 0.3em 0; font-weight: 700; }
+			.hero { padding: 2em 1em; }
+			.hero-inner { max-width: 48em; margin: 0 auto; text-align: center; }
+			.hero-title { color: var(--text); font-size: 1.6em !important; margin: 0 0 0.4em 0; font-weight: 700; }
 			.hero-title .accent { color: var(--accent); }
-			.hero-subtitle { color: var(--muted); font-size: 0.95em; margin: 0.1em 0 1.0em 0; font-weight: 500; }
-			.divider { width: 62%; height: 0; border-top: 2px solid var(--divider); margin: 1.0em auto; }
-			.meta { list-style: none; padding: 0; margin: 0.6em 0 0; display: flex; gap: 1.2em; justify-content: center; color: var(--muted-2); font-size: 0.9em; }
-			.meta li { display: flex; align-items: center; gap: 0.45em; }
-			.meta .icon { color: var(--muted); font-size: 1.1em; line-height: 1; }
+			.hero-subtitle { color: var(--muted); font-size: 1em; margin: 0.2em 0 1.2em 0; font-weight: 500; }
+			.divider {
+				width: 120px;
+				height: 3px;
+				background: linear-gradient(90deg, var(--accent), #ff6b6b);
+				border-radius: var(--radius-sm);
+				margin: 1.2em auto;
+			}
+			.meta { list-style: none; padding: 0; margin: 0.8em 0 0; display: flex; gap: 1.5em; justify-content: center; color: var(--muted); font-size: 0.95em; }
+			.meta li { display: flex; align-items: center; gap: 0.5em; }
+			.meta .icon { color: var(--muted-2); font-size: 1.1em; line-height: 1; }
 
 			/* Section/base utilities */
-			.section-title { color: var(--muted-2); font-size: 1.15em; margin: 0 0 0.6em 0; font-weight: 600; text-align: center; }
-			.section-title--large { margin-bottom: 20px; font-size: 1.3em; }
-			.card { background: #f8f9fa; border-radius: 0.6em; border: 1px solid var(--divider); padding: 1em 1.2em; box-shadow: 0 0.05em 0.2em rgba(0,0,0,0.06); max-width: 44em; margin: 0.2em auto 0; }
-			.card--soft { border-left: 0.18em solid var(--muted); }
+			.section-title { color: var(--text); font-size: 1.2em; margin: 0 0 0.8em 0; font-weight: 600; text-align: center; }
+			.section-title--large { margin-bottom: 20px; font-size: 1.35em; }
+			.card {
+				background: rgba(255, 255, 255, 0.95);
+				border-radius: var(--radius-md);
+				border: 1px solid var(--divider);
+				padding: 1.2em 1.5em;
+				box-shadow: var(--shadow-sm);
+				max-width: 48em;
+				margin: 0.5em auto 0;
+			}
+			.card--soft { border-left: 3px solid var(--muted); }
 			.list-clean { list-style: none; padding: 0; margin: 0; }
-			.list-tight li { margin: 0.35em 0; line-height: 1.5; color: var(--muted-2); font-size: 0.95em; }
-			.list-clean li b, .list-clean li strong { color: var(--text); }
+			.list-tight li { margin: 0.4em 0; line-height: 1.6; color: var(--muted-2); font-size: 0.95em; }
+			.list-clean li b, .list-clean li strong { color: var(--text); font-weight: 600; }
 
 			/* Comparison table styling */
 			.comparison-table {
@@ -109,13 +130,13 @@
 				margin: 0 auto;
 				border-collapse: separate;
 				border-spacing: 0;
-				border-radius: 10px;
+				border-radius: var(--radius-md);
 				overflow: hidden;
-				box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+				box-shadow: var(--shadow-md);
 			}
 
 			.comparison-table thead th {
-				padding: 10px 8px;
+				padding: 12px 10px;
 				text-align: center;
 				width: 50%;
 				border: none;
@@ -140,14 +161,14 @@
 			}
 
 			.comparison-table tbody td {
-				padding: 9px 8px;
+				padding: 10px 10px;
 				text-align: center;
 				font-size: 1.1em;
 			}
 
 			.comparison-table__cell-legacy {
 				background: rgba(255,255,255,0.95);
-				border-bottom: 1px solid #e2e8f0 !important;
+				border-bottom: 1px solid rgba(226, 232, 240, 0.5) !important;
 			}
 
 			.comparison-table tbody tr:last-child .comparison-table__cell-legacy {
@@ -155,8 +176,8 @@
 			}
 
 			.comparison-table__cell-success {
-				background: rgba(236,253,245,0.95);
-				border-bottom: 1px solid #d1fae5 !important;
+				background: rgba(240, 253, 244, 0.95);
+				border-bottom: 1px solid rgba(209, 250, 229, 0.5) !important;
 			}
 
 			.comparison-table tbody tr:last-child .comparison-table__cell-success {
@@ -164,8 +185,8 @@
 			}
 
 			.comparison-table__cell-question {
-				background: rgba(254,242,242,0.95);
-				border-bottom: 1px solid #fecaca !important;
+				background: rgba(254, 242, 242, 0.95);
+				border-bottom: 1px solid rgba(254, 202, 202, 0.5) !important;
 			}
 
 			.comparison-table tbody tr:last-child .comparison-table__cell-question {
@@ -174,10 +195,240 @@
 
 			.comparison-table__text-success {
 				color: #059669;
+				font-weight: 600;
 			}
 
 			.comparison-table__text-question {
 				color: #be123c;
+				font-weight: 600;
+			}
+
+			/* Benchmark section styling */
+			.benchmark-title {
+				color: var(--text);
+				margin-bottom: 1.0em;
+				font-size: 0.85em;
+			}
+
+			.benchmark-source {
+				font-size: 0.51em;
+				color: var(--muted);
+				margin-bottom: 1.2em;
+			}
+
+			.benchmark-source a {
+				color: var(--text);
+				text-decoration: none;
+			}
+
+			.benchmark-grid {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 1.2em;
+				font-size: 0.595em;
+			}
+
+			.benchmark-card {
+				background: var(--bg-soft);
+				padding: 1.2em;
+				border-radius: var(--radius-md);
+				border-left: 0.3em solid var(--muted);
+				box-shadow: var(--shadow-sm);
+			}
+
+			.benchmark-card--leaders {
+				border-left-color: var(--muted-2);
+			}
+
+			.benchmark-card--laggers {
+				border-left-color: #868e96;
+			}
+
+			.benchmark-card__title {
+				color: var(--text);
+				margin-bottom: 0.9em;
+				text-align: center;
+				font-size: 1.18em;
+				font-weight: 600;
+			}
+
+			.benchmark-list {
+				list-style: none;
+				padding: 0;
+				line-height: 1.8;
+			}
+
+			.benchmark-list__item {
+				background: rgba(100, 116, 139, 0.08);
+				padding: 0.5em;
+				margin: 0.3em 0;
+				border-radius: var(--radius-sm);
+			}
+
+			.benchmark-list__item--success-light {
+				background: rgba(16, 185, 129, 0.1);
+			}
+
+			.benchmark-list__item--success {
+				background: rgba(16, 185, 129, 0.15);
+			}
+
+			.benchmark-list__item--success-strong {
+				background: rgba(16, 185, 129, 0.2);
+			}
+
+			.benchmark-list__item--warning {
+				background: rgba(255, 215, 0, 0.1);
+			}
+
+			.benchmark-list__item--danger {
+				background: rgba(220, 20, 60, 0.1);
+			}
+
+			.benchmark-list__item--danger-strong {
+				background: rgba(220, 20, 60, 0.15);
+			}
+
+			.benchmark-list__item--danger-stronger {
+				background: rgba(220, 20, 60, 0.2);
+			}
+
+			.benchmark-list__rank {
+				font-weight: 600;
+			}
+
+			.benchmark-list__rank--success {
+				color: #059669;
+			}
+
+			.benchmark-list__rank--warning {
+				color: #DAA520;
+			}
+
+			.benchmark-list__rank--danger {
+				color: #DC143C;
+			}
+
+			/* Feature blocks styling */
+			.feature-section {
+				text-align: center;
+				margin-bottom: 2.5rem;
+			}
+
+			.feature-section__title {
+				color: var(--text);
+				font-size: 2.4rem;
+				margin-bottom: 2rem;
+				font-weight: 500;
+			}
+
+			.feature-container {
+				display: flex;
+				flex-direction: column;
+				gap: 1.25rem;
+				max-width: 50rem;
+				margin: 0 auto;
+			}
+
+			.feature-card {
+				background: var(--bg-soft);
+				padding: 1.5rem;
+				border-radius: var(--radius-md);
+				border-left: 0.25rem solid var(--muted);
+				box-shadow: var(--shadow-sm);
+			}
+
+			.feature-card__inner {
+				display: flex;
+				align-items: center;
+				gap: 0.9375rem;
+			}
+
+			.feature-card__icon {
+				font-size: 3.2rem;
+				color: var(--muted);
+			}
+
+			.feature-card__text {
+				color: var(--text);
+				font-size: 1.9rem;
+				line-height: 1.4;
+			}
+
+			.feature-card__text strong {
+				color: var(--text);
+				font-weight: 600;
+			}
+
+			/* Tag cloud styling */
+			.tag-section__title {
+				color: var(--text);
+				font-size: 1.4em;
+				margin-bottom: 0.5em;
+				text-align: center;
+			}
+
+			.tag-cloud {
+				text-align: center;
+				line-height: 2.2;
+				font-size: 0.5em;
+				color: var(--muted);
+				max-width: 50em;
+				margin: 0 auto;
+				word-spacing: 0.3em;
+			}
+
+			.tag-cloud__tag {
+				display: inline-block;
+				line-height: 1.3;
+				background: rgba(100, 116, 139, 0.1);
+				padding: 0.2em 0.4em;
+				border-radius: var(--radius-sm);
+				margin: 0.1em;
+			}
+
+			/* Conclusion section styling */
+			.conclusion {
+				text-align: center;
+				padding: 1.5em 1em;
+			}
+
+			.conclusion__title {
+				color: var(--text);
+				font-size: 1.2em;
+				margin-bottom: 1em;
+				font-weight: 600;
+				border-bottom: 0.1em solid #e9ecef;
+				padding-bottom: 0.4em;
+				display: inline-block;
+			}
+
+			.conclusion__card {
+				background: var(--bg-soft);
+				padding: 0.8em 1.2em;
+				border-radius: var(--radius-md);
+				border-left: 0.15em solid var(--muted);
+				max-width: 28em;
+				margin: 0 auto 1em auto;
+				box-shadow: var(--shadow-sm);
+			}
+
+			.conclusion__text {
+				color: var(--text);
+				font-size: 0.9em;
+				line-height: 1.4;
+				margin: 0;
+				font-weight: 500;
+			}
+
+			/* Image container */
+			.image-container {
+				text-align: center;
+			}
+
+			.image-container img {
+				width: 95%;
+				max-width: 100%;
 			}
 		</style>
 	</head>
@@ -198,8 +449,8 @@
 
 				<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
 					<h3 class="section-title">О проекте</h3>
-					<div class="card card--soft" style="border-left-color:#6c757d;">
-						<ul class="list-clean list-tight" style="font-size:0.95em;">
+					<div class="card card--soft">
+						<ul class="list-clean list-tight">
 							<li class="fragment fade-in">✅ Заведение <b>договоров</b> для клиентов</li>
 							<li class="fragment fade-in">🔤 Валидация <b>имён отправителей</b> смс</li>
 							<li class="fragment fade-in">📝 Валидация <b>шаблонов</b> для смс рассылок</li>
@@ -273,86 +524,86 @@
 						</div>
 					</section>
 
-					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
-						<h4 style="color:#495057; margin-bottom:1.0em; font-size:0.85em;">
-							🏆 Рейтинг производительности
+				<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
+					<h4 class="benchmark-title">
+						🏆 Рейтинг производительности
+					</h4>
+					<p class="benchmark-source">
+						Источник: <a href="https://www.techempower.com/benchmarks/#section=data-r23" target="_blank">TechEmpower Benchmarks</a>
+					</p>
+
+					<div class="benchmark-grid">
+						<div class="benchmark-card benchmark-card--leaders">
+							<h5 class="benchmark-card__title">🥇 Лидеры</h5>
+							<ul class="benchmark-list">
+								<li class="benchmark-list__item benchmark-list__item--success-light fragment fade-in" data-fragment-index="1">
+									<span class="benchmark-list__rank benchmark-list__rank--success">35 место</span> ASP.NET из всех
+								</li>
+								<li class="benchmark-list__item benchmark-list__item--success-strong fragment fade-in" data-fragment-index="7">
+									<span class="benchmark-list__rank benchmark-list__rank--success">🏆 1 место</span> из популярных
+								</li>
+								<li class="benchmark-list__item benchmark-list__item--warning fragment fade-in" data-fragment-index="8">
+									<span class="benchmark-list__rank benchmark-list__rank--warning">98 место</span> Fiber (Go)
+								</li>
+							</ul>
+						</div>
+
+						<div class="benchmark-card benchmark-card--laggers">
+							<h5 class="benchmark-card__title">📉 Отстающие</h5>
+							<ul class="benchmark-list">
+								<li class="benchmark-list__item benchmark-list__item--danger fragment fade-in" data-fragment-index="2">
+									<span class="benchmark-list__rank benchmark-list__rank--danger">179 место</span> Spring (Java)
+								</li>
+								<li class="benchmark-list__item benchmark-list__item--danger fragment fade-in" data-fragment-index="3">
+									<span class="benchmark-list__rank benchmark-list__rank--danger">209 место</span> Echo (Go)
+								</li>
+								<li class="benchmark-list__item benchmark-list__item--danger fragment fade-in" data-fragment-index="4">
+									<span class="benchmark-list__rank benchmark-list__rank--danger">230 место</span> Nest.js (Node)
+								</li>
+								<li class="benchmark-list__item benchmark-list__item--danger-strong fragment fade-in" data-fragment-index="5">
+									<span class="benchmark-list__rank benchmark-list__rank--danger">284 место</span> Gin (Go)
+								</li>
+								<li class="benchmark-list__item benchmark-list__item--danger-stronger fragment fade-in" data-fragment-index="6">
+									<span class="benchmark-list__rank benchmark-list__rank--danger">424 место</span> Django (Python)
+								</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+				<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
+					<div class="feature-section">
+						<h4 class="feature-section__title">
+							🎮 > 50-70% мобильных игр написаны на C#
 						</h4>
-						<p style="font-size:0.51em; color:#6c757d; margin-bottom:1.2em;">
-							Источник: <a href="https://www.techempower.com/benchmarks/#section=data-r23" target="_blank" style="color:#495057;">TechEmpower Benchmarks</a>
-						</p>
+					</div>
 
-						<div style="display:grid; grid-template-columns:1fr 1fr; gap:1.2em; font-size:0.595em;">
-							<div style="background:#f8f9fa; padding:1.2em; border-radius:0.6em; border-left:0.3em solid #6c757d;">
-								<h5 style="color:#495057; margin-bottom:0.9em; text-align:center; font-size:1.18em;">🥇 Лидеры</h5>
-								<ul style="list-style:none; padding:0; line-height:1.8;">
-									<li class="fragment fade-in" style="background:rgba(46,139,87,0.1); padding:0.5em; margin:0.3em 0; border-radius:0.3em;" data-fragment-index="1">
-										<span style="color:#2E8B57; font-weight:bold;">35 место</span> ASP.NET из всех
-									</li>
-									<li class="fragment fade-in" style="background:rgba(46,139,87,0.2); padding:0.5em; margin:0.3em 0; border-radius:0.3em;" data-fragment-index="7">
-										<span style="color:#2E8B57; font-weight:bold;">🏆 1 место</span> из популярных
-									</li>
-									<li class="fragment fade-in" style="background:rgba(255,215,0,0.1); padding:0.5em; margin:0.3em 0; border-radius:0.3em;" data-fragment-index="8">
-										<span style="color:#DAA520; font-weight:bold;">98 место</span> Fiber (Go)
-									</li>
-								</ul>
-							</div>
-
-							<div style="background:#f8f9fa; padding:1.2em; border-radius:0.6em; border-left:0.3em solid #868e96;">
-								<h5 style="color:#6c757d; margin-bottom:0.9em; text-align:center; font-size:1.18em;">📉 Отстающие</h5>
-								<ul style="list-style:none; padding:0; line-height:1.8;">
-									<li class="fragment fade-in" style="background:rgba(220,20,60,0.1); padding:0.5em; margin:0.3em 0; border-radius:0.3em;" data-fragment-index="2">
-										<span style="color:#DC143C; font-weight:bold;">179 место</span> Spring (Java)
-									</li>
-									<li class="fragment fade-in" style="background:rgba(220,20,60,0.1); padding:0.5em; margin:0.3em 0; border-radius:0.3em;" data-fragment-index="3">
-										<span style="color:#DC143C; font-weight:bold;">209 место</span> Echo (Go)
-									</li>
-									<li class="fragment fade-in" style="background:rgba(220,20,60,0.1); padding:0.5em; margin:0.3em 0; border-radius:0.3em;" data-fragment-index="4">
-										<span style="color:#DC143C; font-weight:bold;">230 место</span> Nest.js (Node)
-									</li>
-									<li class="fragment fade-in" style="background:rgba(220,20,60,0.15); padding:0.5em; margin:0.3em 0; border-radius:0.3em;" data-fragment-index="5">
-										<span style="color:#DC143C; font-weight:bold;">284 место</span> Gin (Go)
-									</li>
-									<li class="fragment fade-in" style="background:rgba(220,20,60,0.2); padding:0.5em; margin:0.3em 0; border-radius:0.3em;" data-fragment-index="6">
-										<span style="color:#DC143C; font-weight:bold;">424 место</span> Django (Python)
-									</li>
-								</ul>
+					<div class="feature-container">
+						<div class="feature-card fragment fade-in">
+							<div class="feature-card__inner">
+								<span class="feature-card__icon">📱</span>
+								<span class="feature-card__text">
+									Ключевой язык в разработке <strong>высоконагруженных мобильных приложений</strong>
+								</span>
 							</div>
 						</div>
-					</section>
 
-					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
-						<div style="text-align: center; margin-bottom: 2.5rem;">
-							<h4 style="color: #2c3e50; font-size: 2.4rem; margin-bottom: 2rem; font-weight: 500;">
-								🎮 > 50-70% мобильных игр написаны на C#
-							</h4>
-						</div>
-
-						<div style="display: flex; flex-direction: column; gap: 1.25rem; max-width: 50rem; margin: 0 auto;">
-							<div class="fragment fade-in" style="background: #f8f9fa; padding: 1.5rem; border-radius: 0.625rem; border-left: 0.25rem solid #6c757d; box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.08);">
-								<div style="display: flex; align-items: center; gap: 0.9375rem;">
-									<span style="font-size: 3.2rem; color: #6c757d;">📱</span>
-									<span style="color: #495057; font-size: 1.9rem; line-height: 1.4;">
-										Ключевой язык в разработке <strong style="color: #2c3e50;">высоконагруженных мобильных приложений</strong>
-									</span>
-								</div>
-							</div>
-
-							<div class="fragment fade-in" style="background: #f8f9fa; padding: 1.5rem; border-radius: 0.625rem; border-left: 0.25rem solid #868e96; box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.08);">
-								<div style="display: flex; align-items: center; gap: 0.9375rem;">
-									<span style="font-size: 3.2rem; color: #868e96;">🎯</span>
-									<span style="color: #495057; font-size: 1.9rem; line-height: 1.4;">
-										Основной язык в разработке <strong style="color: #2c3e50;">мобильных игр</strong> (в основном за счет Unity)
-									</span>
-								</div>
+						<div class="feature-card fragment fade-in">
+							<div class="feature-card__inner">
+								<span class="feature-card__icon">🎯</span>
+								<span class="feature-card__text">
+									Основной язык в разработке <strong>мобильных игр</strong> (в основном за счет Unity)
+								</span>
 							</div>
 						</div>
-					</section>
+					</div>
+				</section>
 
-					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
-						<img style="width: 95%" src="./images/legacy-to-trends/buildanything.svg" alt="Пиши что угодно" />
-					</section>
-
-					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
+				<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
+					<div class="image-container">
+						<img src="./images/legacy-to-trends/buildanything.svg" alt="Пиши что угодно" />
+					</div>
+				</section>					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
 						<h3 style="color: #495057; font-size: 1.4em; margin-bottom: 0.5em; text-align: center;">
 							Еще преимущества C#
 						</h3>
@@ -1104,7 +1355,7 @@ context.Namings
 						</div>
 					</section>
 
-					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)" class="ef-migration-concept-slide">
+					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
 						<div class="migration-concept-content">
 							<div class="concept-description">
 								<div class="description-header">
@@ -1135,7 +1386,7 @@ await targetContext.SaveChangesAsync();
 						</div>
 					</section>
 
-					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)" class="database-migration-results-slide">
+					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
 						<div class="results-header">
 							<h3 class="results-title">Результаты миграции</h3>
 							<div class="migration-path">
