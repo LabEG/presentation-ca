@@ -22,6 +22,66 @@
 				--divider: #e9ecef;
 			}
 
+			/* Header slide card styling */
+			.header-card {
+				background: rgba(255, 255, 255, 0.9);
+				border-radius: 16px;
+				padding: 50px 40px;
+				box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+				max-width: 800px;
+				margin: 0 auto;
+				border: 1px solid rgba(226, 232, 240, 0.8);
+			}
+
+			.header-content {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin-bottom: 25px;
+			}
+
+			.header-icon-badge {
+				background: linear-gradient(135deg, #64748b, #475569);
+				width: 70px;
+				height: 70px;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin-right: 20px;
+				box-shadow: 0 4px 16px rgba(100, 116, 139, 0.2);
+			}
+
+			.header-icon-badge span {
+				font-size: 2em;
+				color: white;
+			}
+
+			.header-title {
+				margin: 0;
+				color: #334155;
+				font-weight: 600;
+				font-size: 1.8em;
+				text-align: center;
+				line-height: 1.2;
+			}
+
+			.header-title-large {
+				font-size: 2em;
+			}
+
+			.header-divider {
+				height: 3px;
+				background: linear-gradient(90deg, #64748b, #94a3b8);
+				border-radius: 2px;
+				margin: 0 auto;
+				width: 180px;
+			}
+
+			.header-divider-large {
+				width: 200px;
+			}
+
 			/* Minimal hero/title styling */
 			.hero { padding: 1.5em 1em; }
 			.hero-inner { max-width: 44em; margin: 0 auto; text-align: center; }
@@ -57,7 +117,7 @@
 					</div>
 				</section>
 
-				<section>
+				<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
 					<h3 class="section-title">О проекте</h3>
 					<div class="card card--soft" style="border-left-color:#6c757d;">
 						<ul class="list-clean list-tight" style="font-size:0.95em;">
@@ -69,7 +129,7 @@
 					</div>
 				</section>
 
-				<section>
+				<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
 					<h3 class="section-title">Куда мигрировать с легаси?</h3>
 					<table style="font-size:0.7em; width:100%; border-collapse:collapse;">
 						<thead>
@@ -84,35 +144,35 @@
 						</thead>
 						<tbody>
 							<tr class="fragment fade-in" data-fragment-index="1">
-								<td style="border:1px solid #ddd; padding:8px; text-align:center;">� .Net Core 2 / <br /> .Net Framework 4.5</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">� .Net Core 2 / <br /> .Net Framework 4.5</td>
 								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>???</b></td>
 							</tr>
 							<tr class="fragment fade-in" data-fragment-index="2">
-								<td style="border:1px solid #ddd; padding:8px; text-align:center;">🏛️ Oracle</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🏛️ Oracle</td>
 								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>???</b></td>
 							</tr>
 							<tr class="fragment fade-in" data-fragment-index="3">
-								<td style="border:1px solid #ddd; padding:8px; text-align:center;">🪒 Razor</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🪒 Razor</td>
 								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>???</b></td>
 							</tr>
 							<tr class="fragment fade-in" data-fragment-index="4">
-								<td style="border:1px solid #ddd; padding:8px; text-align:center;">🏢 Windows IIS</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🏢 Windows IIS</td>
 								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>???</b></td>
 							</tr>
 							<tr class="fragment fade-in" data-fragment-index="5">
-								<td style="border:1px solid #ddd; padding:8px; text-align:center;">🔇 Без мониторинга</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🔇 Без мониторинга</td>
 								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>???</b></td>
 							</tr>
 							<tr class="fragment fade-in" data-fragment-index="6">
-								<td style="border:1px solid #ddd; padding:8px; text-align:center;">📋 Без документации API</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">📋 Без документации API</td>
 								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>???</b></td>
 							</tr>
 							<tr class="fragment fade-in" data-fragment-index="7">
-								<td style="border:1px solid #ddd; padding:8px; text-align:center;">🏷️ Без версионирования</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🏷️ Без версионирования</td>
 								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>???</b></td>
 							</tr>
 							<tr class="fragment fade-in" data-fragment-index="8">
-								<td style="border:1px solid #ddd; padding:8px; text-align:center;">� Локальная авторизация</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">� Локальная авторизация</td>
 								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>???</b></td>
 							</tr>
 						</tbody>
@@ -120,13 +180,21 @@
 				</section>
 
 				<section>
-					<section>
-						<h3>
-							Что такое C# в 2025 году?
-						</h3>
+					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
+						<div class="header-card">
+							<div class="header-content">
+								<div class="header-icon-badge">
+									<span>💻</span>
+								</div>
+								<h3 class="header-title">
+									Что такое C#<br>в 2025 году?
+								</h3>
+							</div>
+							<div class="header-divider"></div>
+						</div>
 					</section>
 
-					<section>
+					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
 						<h4 style="color:#495057; margin-bottom:1.0em; font-size:0.85em;">
 							🏆 Рейтинг производительности
 						</h4>
@@ -173,7 +241,7 @@
 						</div>
 					</section>
 
-					<section>
+					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
 						<div style="text-align: center; margin-bottom: 2.5rem;">
 							<h4 style="color: #2c3e50; font-size: 2.4rem; margin-bottom: 2rem; font-weight: 500;">
 								🎮 > 50-70% мобильных игр написаны на C#
@@ -201,11 +269,11 @@
 						</div>
 					</section>
 
-					<section>
+					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
 						<img style="width: 95%" src="./images/legacy-to-trends/buildanything.svg" alt="Пиши что угодно" />
 					</section>
 
-					<section>
+					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
 						<h3 style="color: #495057; font-size: 1.4em; margin-bottom: 0.5em; text-align: center;">
 							Еще преимущества C#
 						</h3>
@@ -257,7 +325,7 @@
 						</div>
 					</section>
 
-					<section>
+					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
 						<div style="text-align: center; padding: 1.5em 1em;">
 							<h3 style="color: #495057;
 									  font-size: 1.2em;
@@ -304,7 +372,7 @@
 					</section>
 				</section>
 
-				<section>
+				<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
 					<h3 class="section-title">Из легаси в тренды</h3>
 					<table style="font-size:0.7em; width:100%; border-collapse:collapse;">
 						<thead>
@@ -319,35 +387,35 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center;">� .Net Core 2 / .Net Framework 4.5</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">� .Net Core 2 / .Net Framework 4.5</td>
 								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>🦾 .Net Core 9</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center;">🏛️ Oracle</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🏛️ Oracle</td>
 								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>???</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center;">🪒 Razor</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🪒 Razor</td>
 								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>???</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center;">🏢 Windows IIS</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🏢 Windows IIS</td>
 								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>???</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center;">🔇 Без мониторинга</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🔇 Без мониторинга</td>
 								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>???</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center;">📋 Без документации API</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">📋 Без документации API</td>
 								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>???</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center;">🏷️ Без версионирования</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🏷️ Без версионирования</td>
 								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>???</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center;">� Локальная авторизация</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">� Локальная авторизация</td>
 								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>????</b></td>
 							</tr>
 						</tbody>
@@ -355,18 +423,26 @@
 				</section>
 
 				<section>
-					<section>
-						<h3>
-							Актуальная БД в 2025 году?
-						</h3>
+					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
+						<div class="header-card">
+							<div class="header-content">
+								<div class="header-icon-badge">
+									<span>🗄️</span>
+								</div>
+								<h3 class="header-title">
+									Актуальная БД<br>в 2025 году?
+								</h3>
+							</div>
+							<div class="header-divider"></div>
+						</div>
 					</section>
 
-					<section>
+					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
 						<img style="width: 95%" src="./images/legacy-to-trends/postgresql-everywhere.jpg" alt="PostgreSQL повсюду" />
 					</section>
 				</section>
 
-				<section>
+				<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
 					<h3 class="section-title">Из легаси в тренды</h3>
 					<table style="font-size:0.7em; width:100%; border-collapse:collapse;">
 						<thead>
@@ -381,35 +457,35 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center;">� .Net Core 2 / .Net Framework 4.5</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">� .Net Core 2 / .Net Framework 4.5</td>
 								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>🦾 .Net Core 9</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center;">🏛️ Oracle</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🏛️ Oracle</td>
 								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>🐘 PostgreSQL</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center;">🪒 Razor</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🪒 Razor</td>
 								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>???</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center;">🏢 Windows IIS</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🏢 Windows IIS</td>
 								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>???</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center;">🔇 Без мониторинга</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🔇 Без мониторинга</td>
 								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>???</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center;">📋 Без документации API</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">📋 Без документации API</td>
 								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>???</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center;">🏷️ Без версионирования</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🏷️ Без версионирования</td>
 								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>???</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center;">� Локальная авторизация</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">� Локальная авторизация</td>
 								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>????</b></td>
 							</tr>
 						</tbody>
@@ -417,7 +493,21 @@
 				</section>
 
 				<section>
-					<section style="font-size:0.45em; line-height:1.25;">
+					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
+						<div class="header-card">
+							<div class="header-content">
+								<div class="header-icon-badge">
+									<span>⚛️</span>
+								</div>
+								<h3 class="header-title">
+									Кандидаты на новый стек фронтенда
+								</h3>
+							</div>
+							<div class="header-divider"></div>
+						</div>
+					</section>
+
+					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)" style="font-size:0.45em; line-height:1.25;">
 						<h3 style="margin-bottom:0.6em; font-size:2.0em;">
 							Кандидаты на новый стек фронтенда
 						</h3>
@@ -452,14 +542,14 @@
 						</div>
 					</section>
 
-					<section>
+					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
 						<h4>
 							Сравнение производительности
 						</h4>
 						<img style="width: 16em" src="./images/razor-to-react/blazor-performance.png" alt="Сравнение производительности Blazor" />
 					</section>
 
-					<section style="font-size:0.75em; padding:1em;">
+					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)" style="font-size:0.75em; padding:1em;">
 						<h3 style="color:#495057; font-size:1.6em; margin-bottom:0.8em; text-align:center; font-weight:600;">
 							🧩 Проблемы Blazor
 						</h3>
@@ -487,7 +577,7 @@
 						</div>
 					</section>
 
-					<section>
+					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
 						<div style="text-align: center;">
 							<h3 style="color: #495057; font-size: 1.5em; margin-bottom: 0.8em; font-weight: 600;">
 								🏆 Победитель
@@ -526,7 +616,7 @@
 
 				</section>
 
-				<section>
+				<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
 					<h3 class="section-title">Из легаси в тренды</h3>
 					<table style="font-size:0.7em; width:100%; border-collapse:collapse;">
 						<thead>
@@ -541,56 +631,71 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center;">� .Net Core 2 / .Net Framework 4.5</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">� .Net Core 2 / .Net Framework 4.5</td>
 								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>🦾 .Net Core 9</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center;">🏛️ Oracle</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🏛️ Oracle</td>
 								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>🐘 PostgreSQL</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center;">🪒 Razor</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🪒 Razor</td>
 								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>⚡ Next.js</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center;">🏢 Windows IIS</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🏢 Windows IIS</td>
 								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b class="fragment fade-in">☁️ Linux Kubernetes</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center;">🔇 Без мониторинга</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🔇 Без мониторинга</td>
 								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b class="fragment fade-in">📡 OpenTelemetry</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center;">📋 Без документации API</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">📋 Без документации API</td>
 								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b class="fragment fade-in">📚 OpenApi + Swagger</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center;">🏷️ Без версионирования</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🏷️ Без версионирования</td>
 								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b class="fragment fade-in">🔢 Версионирование API</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center;">� Локальная авторизация</td>
+								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">� Локальная авторизация</td>
 								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b class="fragment fade-in">🌐 Два SSO</b></td>
 							</tr>
 						</tbody>
 					</table>
 				</section>
 
-				<section>
-					<h3>
-						Начинаем миграцию <br/>
-						из легаси в тренды!
-					</h3>
+				<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
+					<div class="header-card">
+						<div class="header-content">
+							<div class="header-icon-badge">
+								<span>🚀</span>
+							</div>
+							<h3 class="header-title">
+								Начинаем миграцию<br/>из легаси в тренды!
+							</h3>
+						</div>
+						<div class="header-divider"></div>
+					</div>
 				</section>
 
 				<section>
-					<section>
-						<h3>
-							Обновляем C#
-						</h3>
+					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
+						<div class="header-card">
+							<div class="header-content">
+								<div class="header-icon-badge">
+									<span>🦾</span>
+								</div>
+								<h3 class="header-title header-title-large">
+									Обновляем C#
+								</h3>
+							</div>
+							<div class="header-divider"></div>
+						</div>
 					</section>
 
-					<section class="concept-slide">
+					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)" class="concept-slide">
 						<h3 class="concept-title">
 							💡 Концепция миграции
 						</h3>
@@ -619,7 +724,7 @@
 						</div>
 					</section>
 
-					<section class="ef-migration-slide">
+					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)" class="ef-migration-slide">
 						<div class="ef-header">
 							<h3 class="ef-title">
 								🚀 .Net Core 2 → .Net Core 3
@@ -666,7 +771,7 @@ context.Namings
 						</div>
 					</section>
 
-					<section class="net5-migration-slide">
+					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)" class="net5-migration-slide">
 						<div class="net5-header">
 							<h3 class="net5-title">
 								🚀 .Net Core 3 → .Net 5
@@ -694,7 +799,7 @@ context.Namings
 						</div>
 					</section>
 
-					<section class="net6-migration-slide">
+					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)" class="net6-migration-slide">
 						<div class="migration-header">
 							<h3 class="migration-title">.Net 5 → .Net 6</h3>
 							<div class="migration-subtitle">
@@ -738,7 +843,7 @@ context.Namings
 						</div>
 					</section>
 
-					<section class="net7-migration-slide">
+					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)" class="net7-migration-slide">
 						<div class="migration-header">
 							<h3 class="migration-title">.Net 6 → .Net 7</h3>
 							<div class="migration-subtitle">
@@ -778,7 +883,7 @@ context.Namings
 						</div>
 					</section>
 
-					<section class="net8-migration-slide">
+					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)" class="net8-migration-slide">
 						<div class="migration-header">
 							<h3 class="migration-title">.Net 7 → .Net 8</h3>
 							<div class="migration-subtitle">
@@ -814,7 +919,7 @@ context.Namings
 						</div>
 					</section>
 
-					<section class="net9-migration-slide">
+					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)" class="net9-migration-slide">
 						<div class="migration-header">
 							<h3 class="migration-title">.Net 8 → .Net 9</h3>
 							<div class="migration-subtitle">
@@ -870,7 +975,7 @@ context.Namings
 						</div>
 					</section>
 
-					<section class="result-slide">
+					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)" class="result-slide">
 						<div class="result-header">
 							<h3 class="result-title">🎯 Результат</h3>
 							<div class="result-subtitle">
@@ -906,13 +1011,21 @@ context.Namings
 				</section>
 
 				<section>
-					<section>
-						<h3>
-							Обновление БД
-						</h3>
+					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
+						<div class="header-card">
+							<div class="header-content">
+								<div class="header-icon-badge">
+									<span>🐘</span>
+								</div>
+								<h3 class="header-title header-title-large">
+									Обновление БД
+								</h3>
+							</div>
+							<div class="header-divider"></div>
+						</div>
 					</section>
 
-					<section class="ef-migration-concept-slide">
+					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)" class="ef-migration-concept-slide">
 						<div class="migration-concept-content">
 							<div class="concept-description">
 								<div class="description-header">
@@ -943,7 +1056,7 @@ await targetContext.SaveChangesAsync();
 						</div>
 					</section>
 
-					<section class="database-migration-results-slide">
+					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)" class="database-migration-results-slide">
 						<div class="results-header">
 							<h3 class="results-title">Результаты миграции</h3>
 							<div class="migration-path">
@@ -1012,13 +1125,21 @@ await targetContext.SaveChangesAsync();
 				</section>
 
 				<section>
-					<section>
-						<h3>
-							Обновление Frontend
-						</h3>
+					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
+						<div class="header-card">
+							<div class="header-content">
+								<div class="header-icon-badge">
+									<span>⚡</span>
+								</div>
+								<h3 class="header-title header-title-large">
+									Обновление Frontend
+								</h3>
+							</div>
+							<div class="header-divider"></div>
+						</div>
 					</section>
 
-					<section style="padding: 1.0em 1em;">
+					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)" style="padding: 1.0em 1em;">
 						<div style="max-width: 42em; margin: 0 auto; text-align: center;">
 							<h3 class="section-title">Вопрос → Ответ</h3>
 							<div class="fragment fade-in card" style="display:flex; align-items:flex-start; gap:0.8em; margin-bottom:0.8em;">
@@ -1039,13 +1160,21 @@ await targetContext.SaveChangesAsync();
 				</section>
 
 				<section>
-					<section>
-						<h3>
-							Миграция в Kubernetes
-						</h3>
+					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
+						<div class="header-card">
+							<div class="header-content">
+								<div class="header-icon-badge">
+									<span>☸️</span>
+								</div>
+								<h3 class="header-title header-title-large">
+									Миграция в Kubernetes
+								</h3>
+							</div>
+							<div class="header-divider"></div>
+						</div>
 					</section>
 
-					<section>
+					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
 						<h4 style="color: #495057; margin-bottom: 30px;">
 							Концепция
 						</h4>
@@ -1069,10 +1198,18 @@ await targetContext.SaveChangesAsync();
 				</section>
 
 				<section>
-					<section>
-						<h3>
-							Внедрение мониторинга
-						</h3>
+					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
+						<div class="header-card">
+							<div class="header-content">
+								<div class="header-icon-badge">
+									<span>📊</span>
+								</div>
+								<h3 class="header-title header-title-large">
+									Внедрение мониторинга
+								</h3>
+							</div>
+							<div class="header-divider"></div>
+						</div>
 					</section>
 
 					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
@@ -1119,10 +1256,18 @@ await targetContext.SaveChangesAsync();
 				</section>
 
 				<section>
-					<section>
-						<h3>
-							Внедрение <br /> Документирования API
-						</h3>
+					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
+						<div class="header-card">
+							<div class="header-content">
+								<div class="header-icon-badge">
+									<span>📋</span>
+								</div>
+								<h3 class="header-title">
+									Внедрение<br>Документирования API
+								</h3>
+							</div>
+							<div class="header-divider"></div>
+						</div>
 					</section>
 
 					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
@@ -1152,10 +1297,18 @@ await targetContext.SaveChangesAsync();
 				</section>
 
 				<section>
-					<section>
-						<h3>
-							Внедрение Версионирования API
-						</h3>
+					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
+						<div class="header-card">
+							<div class="header-content">
+								<div class="header-icon-badge">
+									<span>🔢</span>
+								</div>
+								<h3 class="header-title">
+									Внедрение<br>Версионирования API
+								</h3>
+							</div>
+							<div class="header-divider header-divider-large"></div>
+						</div>
 					</section>
 
 					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
@@ -1185,10 +1338,18 @@ await targetContext.SaveChangesAsync();
 				</section>
 
 				<section>
-					<section>
-						<h3>
-							Внедрение Внутреннего и Внешнего SSO
-						</h3>
+					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
+						<div class="header-card">
+							<div class="header-content">
+								<div class="header-icon-badge">
+									<span>🔐</span>
+								</div>
+								<h3 class="header-title">
+									Внедрение Внутреннего<br>и Внешнего SSO
+								</h3>
+							</div>
+							<div class="header-divider header-divider-large"></div>
+						</div>
 					</section>
 
 					<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
@@ -1231,7 +1392,7 @@ await targetContext.SaveChangesAsync();
 					</section>
 				</section>
 
-				<section style="padding: 1.0em 1em;">
+				<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)" style="padding: 1.0em 1em;">
 					<img style="width: 16em" src="./images/razor-to-react/final.png" alt="Финальный слайд" />
 				</section>
 			</div>
