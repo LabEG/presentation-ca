@@ -95,11 +95,90 @@
 
 			/* Section/base utilities */
 			.section-title { color: var(--muted-2); font-size: 1.15em; margin: 0 0 0.6em 0; font-weight: 600; text-align: center; }
+			.section-title--large { margin-bottom: 20px; font-size: 1.3em; }
 			.card { background: #f8f9fa; border-radius: 0.6em; border: 1px solid var(--divider); padding: 1em 1.2em; box-shadow: 0 0.05em 0.2em rgba(0,0,0,0.06); max-width: 44em; margin: 0.2em auto 0; }
 			.card--soft { border-left: 0.18em solid var(--muted); }
 			.list-clean { list-style: none; padding: 0; margin: 0; }
 			.list-tight li { margin: 0.35em 0; line-height: 1.5; color: var(--muted-2); font-size: 0.95em; }
 			.list-clean li b, .list-clean li strong { color: var(--text); }
+
+			/* Comparison table styling */
+			.comparison-table {
+				font-size: 0.62em;
+				width: 92%;
+				margin: 0 auto;
+				border-collapse: separate;
+				border-spacing: 0;
+				border-radius: 10px;
+				overflow: hidden;
+				box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+			}
+
+			.comparison-table thead th {
+				padding: 10px 8px;
+				text-align: center;
+				width: 50%;
+				border: none;
+			}
+
+			.comparison-table thead th span {
+				color: white;
+				font-size: 1.15em;
+				font-weight: 600;
+			}
+
+			.comparison-table__header-legacy {
+				background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+			}
+
+			.comparison-table__header-success {
+				background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+			}
+
+			.comparison-table__header-question {
+				background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);
+			}
+
+			.comparison-table tbody td {
+				padding: 9px 8px;
+				text-align: center;
+				font-size: 1.1em;
+			}
+
+			.comparison-table__cell-legacy {
+				background: rgba(255,255,255,0.95);
+				border-bottom: 1px solid #e2e8f0 !important;
+			}
+
+			.comparison-table tbody tr:last-child .comparison-table__cell-legacy {
+				border-bottom: none;
+			}
+
+			.comparison-table__cell-success {
+				background: rgba(236,253,245,0.95);
+				border-bottom: 1px solid #d1fae5 !important;
+			}
+
+			.comparison-table tbody tr:last-child .comparison-table__cell-success {
+				border-bottom: none;
+			}
+
+			.comparison-table__cell-question {
+				background: rgba(254,242,242,0.95);
+				border-bottom: 1px solid #fecaca !important;
+			}
+
+			.comparison-table tbody tr:last-child .comparison-table__cell-question {
+				border-bottom: none;
+			}
+
+			.comparison-table__text-success {
+				color: #059669;
+			}
+
+			.comparison-table__text-question {
+				color: #be123c;
+			}
 		</style>
 	</head>
 	<body>
@@ -130,50 +209,50 @@
 				</section>
 
 				<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
-					<h3 class="section-title">Куда мигрировать с легаси?</h3>
-					<table style="font-size:0.7em; width:100%; border-collapse:collapse;">
+					<h3 class="section-title section-title--large">Куда мигрировать с легаси?</h3>
+					<table class="comparison-table">
 						<thead>
 							<tr>
-								<th style="border:1px solid #ddd; padding:8px; background:#f5f5f5; text-align:center; width:50%;">
-									<span style="color:#666;">📉 БЫЛО (Легаси)</span>
+								<th class="comparison-table__header-legacy">
+									<span>📉 БЫЛО (Легаси)</span>
 								</th>
-								<th style="border:1px solid #ddd; padding:8px; background:#f5f5f5; text-align:center; width:50%;">
-									<span style="color:#F9322C;">Куда?</span>
+								<th class="comparison-table__header-question">
+									<span>❓ Куда?</span>
 								</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr class="fragment fade-in" data-fragment-index="1">
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">� .Net Core 2 / <br /> .Net Framework 4.5</td>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>???</b></td>
+								<td class="comparison-table__cell-legacy">⚙️ .Net Core 2 / <br /> .Net Framework 4.5</td>
+								<td class="comparison-table__cell-question"><b class="comparison-table__text-question">???</b></td>
 							</tr>
 							<tr class="fragment fade-in" data-fragment-index="2">
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🏛️ Oracle</td>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>???</b></td>
+								<td class="comparison-table__cell-legacy">🏛️ Oracle</td>
+								<td class="comparison-table__cell-question"><b class="comparison-table__text-question">???</b></td>
 							</tr>
 							<tr class="fragment fade-in" data-fragment-index="3">
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🪒 Razor</td>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>???</b></td>
+								<td class="comparison-table__cell-legacy">🪒 Razor</td>
+								<td class="comparison-table__cell-question"><b class="comparison-table__text-question">???</b></td>
 							</tr>
 							<tr class="fragment fade-in" data-fragment-index="4">
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🏢 Windows IIS</td>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>???</b></td>
+								<td class="comparison-table__cell-legacy">🏢 Windows IIS</td>
+								<td class="comparison-table__cell-question"><b class="comparison-table__text-question">???</b></td>
 							</tr>
 							<tr class="fragment fade-in" data-fragment-index="5">
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🔇 Без мониторинга</td>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>???</b></td>
+								<td class="comparison-table__cell-legacy">🔇 Без мониторинга</td>
+								<td class="comparison-table__cell-question"><b class="comparison-table__text-question">???</b></td>
 							</tr>
 							<tr class="fragment fade-in" data-fragment-index="6">
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">📋 Без документации API</td>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>???</b></td>
+								<td class="comparison-table__cell-legacy">📋 Без документации API</td>
+								<td class="comparison-table__cell-question"><b class="comparison-table__text-question">???</b></td>
 							</tr>
 							<tr class="fragment fade-in" data-fragment-index="7">
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🏷️ Без версионирования</td>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>???</b></td>
+								<td class="comparison-table__cell-legacy">🏷️ Без версионирования</td>
+								<td class="comparison-table__cell-question"><b class="comparison-table__text-question">???</b></td>
 							</tr>
 							<tr class="fragment fade-in" data-fragment-index="8">
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">� Локальная авторизация</td>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>???</b></td>
+								<td class="comparison-table__cell-legacy">🔑 Локальная авторизация</td>
+								<td class="comparison-table__cell-question"><b class="comparison-table__text-question">???</b></td>
 							</tr>
 						</tbody>
 					</table>
@@ -373,50 +452,50 @@
 				</section>
 
 				<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
-					<h3 class="section-title">Из легаси в тренды</h3>
-					<table style="font-size:0.7em; width:100%; border-collapse:collapse;">
+					<h3 class="section-title section-title--large">Из легаси в тренды</h3>
+					<table class="comparison-table">
 						<thead>
 							<tr>
-								<th style="border:1px solid #ddd; padding:8px; background:#f5f5f5; text-align:center; width:50%;">
-									<span style="color:#666;">📉 БЫЛО (Легаси)</span>
+								<th class="comparison-table__header-legacy">
+									<span>📉 БЫЛО (Легаси)</span>
 								</th>
-								<th style="border:1px solid #ddd; padding:8px; background:#f5f5f5; text-align:center; width:50%;">
-									<span style="color:#F9322C;">🚀 СТАЛО (Тренды)</span>
+								<th class="comparison-table__header-success">
+									<span>🚀 СТАЛО (Тренды)</span>
 								</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">� .Net Core 2 / .Net Framework 4.5</td>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>🦾 .Net Core 9</b></td>
+								<td class="comparison-table__cell-legacy">⚙️ .Net Core 2 / .Net Framework 4.5</td>
+								<td class="comparison-table__cell-success"><b class="comparison-table__text-success">🦾 .Net Core 9</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🏛️ Oracle</td>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>???</b></td>
+								<td class="comparison-table__cell-legacy">🏛️ Oracle</td>
+								<td class="comparison-table__cell-success"><b class="comparison-table__text-success">???</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🪒 Razor</td>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>???</b></td>
+								<td class="comparison-table__cell-legacy">🪒 Razor</td>
+								<td class="comparison-table__cell-success"><b class="comparison-table__text-success">???</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🏢 Windows IIS</td>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>???</b></td>
+								<td class="comparison-table__cell-legacy">🏢 Windows IIS</td>
+								<td class="comparison-table__cell-success"><b class="comparison-table__text-success">???</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🔇 Без мониторинга</td>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>???</b></td>
+								<td class="comparison-table__cell-legacy">🔇 Без мониторинга</td>
+								<td class="comparison-table__cell-success"><b class="comparison-table__text-success">???</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">📋 Без документации API</td>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>???</b></td>
+								<td class="comparison-table__cell-legacy">📋 Без документации API</td>
+								<td class="comparison-table__cell-success"><b class="comparison-table__text-success">???</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🏷️ Без версионирования</td>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>???</b></td>
+								<td class="comparison-table__cell-legacy">🏷️ Без версионирования</td>
+								<td class="comparison-table__cell-success"><b class="comparison-table__text-success">???</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">� Локальная авторизация</td>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>????</b></td>
+								<td class="comparison-table__cell-legacy">🔑 Локальная авторизация</td>
+								<td class="comparison-table__cell-success"><b class="comparison-table__text-success">????</b></td>
 							</tr>
 						</tbody>
 					</table>
@@ -443,50 +522,50 @@
 				</section>
 
 				<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
-					<h3 class="section-title">Из легаси в тренды</h3>
-					<table style="font-size:0.7em; width:100%; border-collapse:collapse;">
+					<h3 class="section-title section-title--large">Из легаси в тренды</h3>
+					<table class="comparison-table">
 						<thead>
 							<tr>
-								<th style="border:1px solid #ddd; padding:8px; background:#f5f5f5; text-align:center; width:50%;">
-									<span style="color:#666;">📉 БЫЛО (Легаси)</span>
+								<th class="comparison-table__header-legacy">
+									<span>📉 БЫЛО (Легаси)</span>
 								</th>
-								<th style="border:1px solid #ddd; padding:8px; background:#f5f5f5; text-align:center; width:50%;">
-									<span style="color:#F9322C;">🚀 СТАЛО (Тренды)</span>
+								<th class="comparison-table__header-success">
+									<span>🚀 СТАЛО (Тренды)</span>
 								</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">� .Net Core 2 / .Net Framework 4.5</td>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>🦾 .Net Core 9</b></td>
+								<td class="comparison-table__cell-legacy">⚙️ .Net Core 2 / .Net Framework 4.5</td>
+								<td class="comparison-table__cell-success"><b class="comparison-table__text-success">🦾 .Net Core 9</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🏛️ Oracle</td>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>🐘 PostgreSQL</b></td>
+								<td class="comparison-table__cell-legacy">🏛️ Oracle</td>
+								<td class="comparison-table__cell-success"><b class="comparison-table__text-success">🐘 PostgreSQL</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🪒 Razor</td>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>???</b></td>
+								<td class="comparison-table__cell-legacy">🪒 Razor</td>
+								<td class="comparison-table__cell-success"><b class="comparison-table__text-success">???</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🏢 Windows IIS</td>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>???</b></td>
+								<td class="comparison-table__cell-legacy">🏢 Windows IIS</td>
+								<td class="comparison-table__cell-success"><b class="comparison-table__text-success">???</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🔇 Без мониторинга</td>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>???</b></td>
+								<td class="comparison-table__cell-legacy">🔇 Без мониторинга</td>
+								<td class="comparison-table__cell-success"><b class="comparison-table__text-success">???</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">📋 Без документации API</td>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>???</b></td>
+								<td class="comparison-table__cell-legacy">📋 Без документации API</td>
+								<td class="comparison-table__cell-success"><b class="comparison-table__text-success">???</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🏷️ Без версионирования</td>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>???</b></td>
+								<td class="comparison-table__cell-legacy">🏷️ Без версионирования</td>
+								<td class="comparison-table__cell-success"><b class="comparison-table__text-success">???</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">� Локальная авторизация</td>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>????</b></td>
+								<td class="comparison-table__cell-legacy">🔑 Локальная авторизация</td>
+								<td class="comparison-table__cell-success"><b class="comparison-table__text-success">????</b></td>
 							</tr>
 						</tbody>
 					</table>
@@ -617,50 +696,50 @@
 				</section>
 
 				<section data-background="linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)">
-					<h3 class="section-title">Из легаси в тренды</h3>
-					<table style="font-size:0.7em; width:100%; border-collapse:collapse;">
+					<h3 class="section-title section-title--large">Из легаси в тренды</h3>
+					<table class="comparison-table">
 						<thead>
 							<tr>
-								<th style="border:1px solid #ddd; padding:8px; background:#f5f5f5; text-align:center; width:50%;">
-									<span style="color:#666;">📉 БЫЛО (Легаси)</span>
+								<th class="comparison-table__header-legacy">
+									<span>📉 БЫЛО (Легаси)</span>
 								</th>
-								<th style="border:1px solid #ddd; padding:8px; background:#f5f5f5; text-align:center; width:50%;">
-									<span style="color:#F9322C;">🚀 СТАЛО (Тренды)</span>
+								<th class="comparison-table__header-success">
+									<span>🚀 СТАЛО (Тренды)</span>
 								</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">� .Net Core 2 / .Net Framework 4.5</td>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>🦾 .Net Core 9</b></td>
+								<td class="comparison-table__cell-legacy">⚙️ .Net Core 2 / .Net Framework 4.5</td>
+								<td class="comparison-table__cell-success"><b class="comparison-table__text-success">🦾 .Net Core 9</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🏛️ Oracle</td>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>🐘 PostgreSQL</b></td>
+								<td class="comparison-table__cell-legacy">🏛️ Oracle</td>
+								<td class="comparison-table__cell-success"><b class="comparison-table__text-success">🐘 PostgreSQL</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🪒 Razor</td>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b>⚡ Next.js</b></td>
+								<td class="comparison-table__cell-legacy">🪒 Razor</td>
+								<td class="comparison-table__cell-success"><b class="comparison-table__text-success">⚡ Next.js</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🏢 Windows IIS</td>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b class="fragment fade-in">☁️ Linux Kubernetes</b></td>
+								<td class="comparison-table__cell-legacy">🏢 Windows IIS</td>
+								<td class="comparison-table__cell-success"><b class="comparison-table__text-success fragment fade-in">☁️ Linux Kubernetes</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🔇 Без мониторинга</td>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b class="fragment fade-in">📡 OpenTelemetry</b></td>
+								<td class="comparison-table__cell-legacy">🔇 Без мониторинга</td>
+								<td class="comparison-table__cell-success"><b class="comparison-table__text-success fragment fade-in">📡 OpenTelemetry</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">📋 Без документации API</td>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b class="fragment fade-in">📚 OpenApi + Swagger</b></td>
+								<td class="comparison-table__cell-legacy">📋 Без документации API</td>
+								<td class="comparison-table__cell-success"><b class="comparison-table__text-success fragment fade-in">📚 OpenApi + Swagger</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">🏷️ Без версионирования</td>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b class="fragment fade-in">🔢 Версионирование API</b></td>
+								<td class="comparison-table__cell-legacy">🏷️ Без версионирования</td>
+								<td class="comparison-table__cell-success"><b class="comparison-table__text-success fragment fade-in">🔢 Версионирование API</b></td>
 							</tr>
 							<tr>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:white;">� Локальная авторизация</td>
-								<td style="border:1px solid #ddd; padding:8px; text-align:center; background:#e8f5e8;"><b class="fragment fade-in">🌐 Два SSO</b></td>
+								<td class="comparison-table__cell-legacy">🔑 Локальная авторизация</td>
+								<td class="comparison-table__cell-success"><b class="comparison-table__text-success fragment fade-in">🌐 Два SSO</b></td>
 							</tr>
 						</tbody>
 					</table>
